@@ -6,7 +6,7 @@
 //  Copyright © 2015 Plot Guru. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@import Foundation;
 
 //! Project version number for PGMappingKit.
 FOUNDATION_EXPORT double PGMappingKitVersionNumber;

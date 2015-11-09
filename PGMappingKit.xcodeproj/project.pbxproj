@@ -10,6 +10,18 @@
 		D06C355D1BF01C06003D9D72 /* PGMappingKit.h in Headers */ = {isa = PBXBuildFile; fileRef = D06C355C1BF01C06003D9D72 /* PGMappingKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D06C35641BF01C06003D9D72 /* PGMappingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D06C35591BF01C06003D9D72 /* PGMappingKit.framework */; };
 		D06C35691BF01C06003D9D72 /* PGMappingKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D06C35681BF01C06003D9D72 /* PGMappingKitTests.m */; };
+		D06C357D1BF01E6C003D9D72 /* PGNetworkHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = D06C35731BF01E6C003D9D72 /* PGNetworkHandler.h */; };
+		D06C357E1BF01E6C003D9D72 /* PGNetworkHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = D06C35741BF01E6C003D9D72 /* PGNetworkHandler.m */; };
+		D06C357F1BF01E6C003D9D72 /* NSManagedObjectContext+PGNetworkMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = D06C35751BF01E6C003D9D72 /* NSManagedObjectContext+PGNetworkMapping.h */; };
+		D06C35801BF01E6C003D9D72 /* NSManagedObjectContext+PGNetworkMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = D06C35761BF01E6C003D9D72 /* NSManagedObjectContext+PGNetworkMapping.m */; };
+		D06C35811BF01E6C003D9D72 /* PGNetworkMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = D06C35771BF01E6C003D9D72 /* PGNetworkMapping.h */; };
+		D06C35821BF01E6C003D9D72 /* PGNetworkMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = D06C35781BF01E6C003D9D72 /* PGNetworkMapping.m */; };
+		D06C35831BF01E6C003D9D72 /* NSObject+PGKeyValueCoding.h in Headers */ = {isa = PBXBuildFile; fileRef = D06C35791BF01E6C003D9D72 /* NSObject+PGKeyValueCoding.h */; };
+		D06C35841BF01E6C003D9D72 /* NSObject+PGKeyValueCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = D06C357A1BF01E6C003D9D72 /* NSObject+PGKeyValueCoding.m */; };
+		D06C35851BF01E6C003D9D72 /* NSObject+PGPropertyList.h in Headers */ = {isa = PBXBuildFile; fileRef = D06C357B1BF01E6C003D9D72 /* NSObject+PGPropertyList.h */; };
+		D06C35861BF01E6C003D9D72 /* NSObject+PGPropertyList.m in Sources */ = {isa = PBXBuildFile; fileRef = D06C357C1BF01E6C003D9D72 /* NSObject+PGPropertyList.m */; };
+		D06C35891BF01E8B003D9D72 /* NSMutableDictionary+PGSafeCheck.h in Headers */ = {isa = PBXBuildFile; fileRef = D06C35871BF01E8B003D9D72 /* NSMutableDictionary+PGSafeCheck.h */; };
+		D06C358A1BF01E8B003D9D72 /* NSMutableDictionary+PGSafeCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = D06C35881BF01E8B003D9D72 /* NSMutableDictionary+PGSafeCheck.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +41,18 @@
 		D06C35631BF01C06003D9D72 /* PGMappingKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PGMappingKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D06C35681BF01C06003D9D72 /* PGMappingKitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PGMappingKitTests.m; sourceTree = "<group>"; };
 		D06C356A1BF01C06003D9D72 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D06C35731BF01E6C003D9D72 /* PGNetworkHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGNetworkHandler.h; sourceTree = "<group>"; };
+		D06C35741BF01E6C003D9D72 /* PGNetworkHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGNetworkHandler.m; sourceTree = "<group>"; };
+		D06C35751BF01E6C003D9D72 /* NSManagedObjectContext+PGNetworkMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObjectContext+PGNetworkMapping.h"; sourceTree = "<group>"; };
+		D06C35761BF01E6C003D9D72 /* NSManagedObjectContext+PGNetworkMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObjectContext+PGNetworkMapping.m"; sourceTree = "<group>"; };
+		D06C35771BF01E6C003D9D72 /* PGNetworkMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGNetworkMapping.h; sourceTree = "<group>"; };
+		D06C35781BF01E6C003D9D72 /* PGNetworkMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGNetworkMapping.m; sourceTree = "<group>"; };
+		D06C35791BF01E6C003D9D72 /* NSObject+PGKeyValueCoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+PGKeyValueCoding.h"; sourceTree = "<group>"; };
+		D06C357A1BF01E6C003D9D72 /* NSObject+PGKeyValueCoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+PGKeyValueCoding.m"; sourceTree = "<group>"; };
+		D06C357B1BF01E6C003D9D72 /* NSObject+PGPropertyList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+PGPropertyList.h"; sourceTree = "<group>"; };
+		D06C357C1BF01E6C003D9D72 /* NSObject+PGPropertyList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+PGPropertyList.m"; sourceTree = "<group>"; };
+		D06C35871BF01E8B003D9D72 /* NSMutableDictionary+PGSafeCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+PGSafeCheck.h"; sourceTree = "<group>"; };
+		D06C35881BF01E8B003D9D72 /* NSMutableDictionary+PGSafeCheck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+PGSafeCheck.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,7 +96,14 @@
 			isa = PBXGroup;
 			children = (
 				D06C355C1BF01C06003D9D72 /* PGMappingKit.h */,
-				D06C355E1BF01C06003D9D72 /* Info.plist */,
+				D06C35731BF01E6C003D9D72 /* PGNetworkHandler.h */,
+				D06C35741BF01E6C003D9D72 /* PGNetworkHandler.m */,
+				D06C35751BF01E6C003D9D72 /* NSManagedObjectContext+PGNetworkMapping.h */,
+				D06C35761BF01E6C003D9D72 /* NSManagedObjectContext+PGNetworkMapping.m */,
+				D06C35771BF01E6C003D9D72 /* PGNetworkMapping.h */,
+				D06C35781BF01E6C003D9D72 /* PGNetworkMapping.m */,
+				D06C358B1BF01E90003D9D72 /* PGSubject */,
+				D06C358C1BF01EBA003D9D72 /* PGBuild */,
 			);
 			path = PGMappingKit;
 			sourceTree = "<group>";
@@ -86,6 +117,27 @@
 			path = PGMappingKitTests;
 			sourceTree = "<group>";
 		};
+		D06C358B1BF01E90003D9D72 /* PGSubject */ = {
+			isa = PBXGroup;
+			children = (
+				D06C35791BF01E6C003D9D72 /* NSObject+PGKeyValueCoding.h */,
+				D06C357A1BF01E6C003D9D72 /* NSObject+PGKeyValueCoding.m */,
+				D06C357B1BF01E6C003D9D72 /* NSObject+PGPropertyList.h */,
+				D06C357C1BF01E6C003D9D72 /* NSObject+PGPropertyList.m */,
+				D06C35871BF01E8B003D9D72 /* NSMutableDictionary+PGSafeCheck.h */,
+				D06C35881BF01E8B003D9D72 /* NSMutableDictionary+PGSafeCheck.m */,
+			);
+			name = PGSubject;
+			sourceTree = "<group>";
+		};
+		D06C358C1BF01EBA003D9D72 /* PGBuild */ = {
+			isa = PBXGroup;
+			children = (
+				D06C355E1BF01C06003D9D72 /* Info.plist */,
+			);
+			name = PGBuild;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -93,7 +145,13 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D06C357F1BF01E6C003D9D72 /* NSManagedObjectContext+PGNetworkMapping.h in Headers */,
+				D06C35811BF01E6C003D9D72 /* PGNetworkMapping.h in Headers */,
+				D06C35831BF01E6C003D9D72 /* NSObject+PGKeyValueCoding.h in Headers */,
+				D06C35891BF01E8B003D9D72 /* NSMutableDictionary+PGSafeCheck.h in Headers */,
 				D06C355D1BF01C06003D9D72 /* PGMappingKit.h in Headers */,
+				D06C35851BF01E6C003D9D72 /* NSObject+PGPropertyList.h in Headers */,
+				D06C357D1BF01E6C003D9D72 /* PGNetworkHandler.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -193,6 +251,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D06C358A1BF01E8B003D9D72 /* NSMutableDictionary+PGSafeCheck.m in Sources */,
+				D06C35861BF01E6C003D9D72 /* NSObject+PGPropertyList.m in Sources */,
+				D06C35801BF01E6C003D9D72 /* NSManagedObjectContext+PGNetworkMapping.m in Sources */,
+				D06C35821BF01E6C003D9D72 /* PGNetworkMapping.m in Sources */,
+				D06C35841BF01E6C003D9D72 /* NSObject+PGKeyValueCoding.m in Sources */,
+				D06C357E1BF01E6C003D9D72 /* PGNetworkHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -374,6 +438,7 @@
 				D06C356F1BF01C06003D9D72 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D06C35701BF01C06003D9D72 /* Build configuration list for PBXNativeTarget "PGMappingKitTests" */ = {
 			isa = XCConfigurationList;
@@ -382,6 +447,7 @@
 				D06C35721BF01C06003D9D72 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
