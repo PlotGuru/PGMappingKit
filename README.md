@@ -4,11 +4,11 @@ Lightweight JSON Synchronization to Core Data
 
 ## Credits
 
-PGMappingKit is owned by [Plot Guru](www.plotguru.com).
+PGMappingKit is owned by [Plot Guru](http://www.plotguru.com).
 
-PGMappingKit is maintained by [Hooman Mohammadi](github.com/hooman96).
+PGMappingKit is maintained by [Hooman Mohammadi](https://github.com/hooman96).
 
-PGMappingKit was originally created by [Justin Jia](github.com/justinjiadev/) in the development of [Plot Guru for iOS](itunes.apple.com/app/id964629606).
+PGMappingKit was originally created by [Justin Jia](https://github.com/justinjiadev/) in the development of [Plot Guru for iOS](https://itunes.apple.com/app/id964629606).
 
 ## Licensing
 
