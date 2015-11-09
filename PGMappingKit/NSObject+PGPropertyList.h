@@ -1,6 +1,6 @@
 //
 //  NSObject+PGPropertyList.h
-//  PlotGuru
+//  PGMappingKit
 //
 //  Created by Justin Jia on 9/7/15.
 //  Copyright (c) 2015 Plot Guru. All rights reserved.

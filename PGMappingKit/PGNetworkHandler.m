@@ -1,6 +1,6 @@
 //
 //  PGNetworkHandler.m
-//  PlotGuru
+//  PGMappingKit
 //
 //  Created by Justin Jia on 7/23/15.
 //  Copyright (c) 2015 Plot Guru. All rights reserved.
@@ -9,8 +9,8 @@
 #import <AFNetworking/AFNetworking.h>
 
 #import "PGNetworkHandler.h"
-#import "PGDocumentConstants.h"
 #import "NSObject+PGPropertyList.h"
+#import "NSMutableDictionary+PGSafeCheck.h"
 
 @interface PGNetworkHandler ()
 
@@ -20,13 +20,6 @@
 @end
 
 @implementation PGNetworkHandler
-
-#pragma mark - Dealloc Methods
-
-- (void)dealloc
-{
-    PGLogInfo(@"Deallocated.");
-}
 
 #pragma mark - Init Methods
 
