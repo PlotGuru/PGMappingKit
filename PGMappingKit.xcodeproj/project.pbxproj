@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		76AFE539E05C983879372D49 /* libPods-PGMappingKitTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C4875A783CFAC43424BD9C68 /* libPods-PGMappingKitTests.a */; };
 		C4555D0DC25C6E9C06A6D6EC /* libPods-PGMappingKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BADA07B412AD1E32E27D2FC /* libPods-PGMappingKit.a */; };
 		D06C355D1BF01C06003D9D72 /* PGMappingKit.h in Headers */ = {isa = PBXBuildFile; fileRef = D06C355C1BF01C06003D9D72 /* PGMappingKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D06C35641BF01C06003D9D72 /* PGMappingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D06C35591BF01C06003D9D72 /* PGMappingKit.framework */; };
@@ -39,6 +40,8 @@
 		0141DF5A2CA5C13B9966D0C2 /* Pods-PGMappingKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PGMappingKit.release.xcconfig"; path = "Pods/Target Support Files/Pods-PGMappingKit/Pods-PGMappingKit.release.xcconfig"; sourceTree = "<group>"; };
 		7BADA07B412AD1E32E27D2FC /* libPods-PGMappingKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PGMappingKit.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D44E4BCB2B77D9ED54FD983 /* Pods-PGMappingKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PGMappingKit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PGMappingKit/Pods-PGMappingKit.debug.xcconfig"; sourceTree = "<group>"; };
+		C17B059852862AFEB3745453 /* Pods-PGMappingKitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PGMappingKitTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PGMappingKitTests/Pods-PGMappingKitTests.release.xcconfig"; sourceTree = "<group>"; };
+		C4875A783CFAC43424BD9C68 /* libPods-PGMappingKitTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PGMappingKitTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D06C35591BF01C06003D9D72 /* PGMappingKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PGMappingKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D06C355C1BF01C06003D9D72 /* PGMappingKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PGMappingKit.h; sourceTree = "<group>"; };
 		D06C355E1BF01C06003D9D72 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -57,6 +60,7 @@
 		D06C357C1BF01E6C003D9D72 /* NSObject+PGPropertyList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+PGPropertyList.m"; sourceTree = "<group>"; };
 		D06C35871BF01E8B003D9D72 /* NSMutableDictionary+PGSafeCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+PGSafeCheck.h"; sourceTree = "<group>"; };
 		D06C35881BF01E8B003D9D72 /* NSMutableDictionary+PGSafeCheck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+PGSafeCheck.m"; sourceTree = "<group>"; };
+		E39726664E3984FD3D34CFF9 /* Pods-PGMappingKitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PGMappingKitTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PGMappingKitTests/Pods-PGMappingKitTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +77,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D06C35641BF01C06003D9D72 /* PGMappingKit.framework in Frameworks */,
+				76AFE539E05C983879372D49 /* libPods-PGMappingKitTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,6 +89,8 @@
 			children = (
 				7D44E4BCB2B77D9ED54FD983 /* Pods-PGMappingKit.debug.xcconfig */,
 				0141DF5A2CA5C13B9966D0C2 /* Pods-PGMappingKit.release.xcconfig */,
+				E39726664E3984FD3D34CFF9 /* Pods-PGMappingKitTests.debug.xcconfig */,
+				C17B059852862AFEB3745453 /* Pods-PGMappingKitTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -92,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				7BADA07B412AD1E32E27D2FC /* libPods-PGMappingKit.a */,
+				C4875A783CFAC43424BD9C68 /* libPods-PGMappingKitTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -214,9 +222,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D06C35701BF01C06003D9D72 /* Build configuration list for PBXNativeTarget "PGMappingKitTests" */;
 			buildPhases = (
+				601D21B6E5B2D6FAC30D9D7F /* Check Pods Manifest.lock */,
 				D06C355F1BF01C06003D9D72 /* Sources */,
 				D06C35601BF01C06003D9D72 /* Frameworks */,
 				D06C35611BF01C06003D9D72 /* Resources */,
+				5D8F0FDF5952EC585E3FA2CC /* Embed Pods Frameworks */,
+				72243115818D2B3AC464F338 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -281,6 +292,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		5D8F0FDF5952EC585E3FA2CC /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PGMappingKitTests/Pods-PGMappingKitTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		5E9A10DD9689EE640EE0548E /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -294,6 +320,36 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		601D21B6E5B2D6FAC30D9D7F /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		72243115818D2B3AC464F338 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PGMappingKitTests/Pods-PGMappingKitTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A8B71E35B133556A65EE1EDD /* Copy Pods Resources */ = {
@@ -470,6 +526,7 @@
 		};
 		D06C35711BF01C06003D9D72 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E39726664E3984FD3D34CFF9 /* Pods-PGMappingKitTests.debug.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = PGMappingKitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -480,6 +537,7 @@
 		};
 		D06C35721BF01C06003D9D72 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C17B059852862AFEB3745453 /* Pods-PGMappingKitTests.release.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = PGMappingKitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
