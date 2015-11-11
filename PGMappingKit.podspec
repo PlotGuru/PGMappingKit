@@ -12,7 +12,6 @@ Pod::Spec.new do |s|
   s.requires_arc = true
 
   s.source_files = 'PGMappingKit/*.{h,m}'
-  s.public_header_files = 'PGMappingKit/PGNetworkHandler.h'
   s.frameworks = 'Foundation'
   s.dependency 'AFNetworking', '~> 2.3'
 end
