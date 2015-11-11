@@ -1,6 +1,19 @@
 # PGMappingKit
 
+[![Version](https://img.shields.io/cocoapods/v/PGMappingKit.svg?style=flat)](http://cocoapods.org/pods/PGMappingKit)
+[![License](https://img.shields.io/cocoapods/l/PGMappingKit.svg?style=flat)](http://cocoapods.org/pods/PGMappingKit)
+[![Platform](https://img.shields.io/cocoapods/p/PGMappingKit.svg?style=flat)](http://cocoapods.org/pods/PGMappingKit)
+
 Lightweight JSON Synchronization to Core Data
+
+## Installation
+
+Source is available through [CocoaPods](http://cocoapods.org). To install
+it, simply add the following line to your Podfile:
+
+```ruby
+pod “PGMappingKit”
+```
 
 ## Credits
 
