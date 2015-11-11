@@ -9,9 +9,9 @@
 /* Begin PBXBuildFile section */
 		76AFE539E05C983879372D49 /* libPods-PGMappingKitTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C4875A783CFAC43424BD9C68 /* libPods-PGMappingKitTests.a */; };
 		C4555D0DC25C6E9C06A6D6EC /* libPods-PGMappingKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BADA07B412AD1E32E27D2FC /* libPods-PGMappingKit.a */; };
+		D0667CD21BF4049500682856 /* PGNetworkMappingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D0667CD11BF4049500682856 /* PGNetworkMappingTests.m */; };
 		D06C355D1BF01C06003D9D72 /* PGMappingKit.h in Headers */ = {isa = PBXBuildFile; fileRef = D06C355C1BF01C06003D9D72 /* PGMappingKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D06C35641BF01C06003D9D72 /* PGMappingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D06C35591BF01C06003D9D72 /* PGMappingKit.framework */; };
-		D06C35691BF01C06003D9D72 /* PGMappingKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D06C35681BF01C06003D9D72 /* PGMappingKitTests.m */; };
 		D06C357D1BF01E6C003D9D72 /* PGNetworkHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = D06C35731BF01E6C003D9D72 /* PGNetworkHandler.h */; };
 		D06C357E1BF01E6C003D9D72 /* PGNetworkHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = D06C35741BF01E6C003D9D72 /* PGNetworkHandler.m */; };
 		D06C357F1BF01E6C003D9D72 /* NSManagedObjectContext+PGNetworkMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = D06C35751BF01E6C003D9D72 /* NSManagedObjectContext+PGNetworkMapping.h */; };
@@ -42,11 +42,11 @@
 		7D44E4BCB2B77D9ED54FD983 /* Pods-PGMappingKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PGMappingKit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PGMappingKit/Pods-PGMappingKit.debug.xcconfig"; sourceTree = "<group>"; };
 		C17B059852862AFEB3745453 /* Pods-PGMappingKitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PGMappingKitTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PGMappingKitTests/Pods-PGMappingKitTests.release.xcconfig"; sourceTree = "<group>"; };
 		C4875A783CFAC43424BD9C68 /* libPods-PGMappingKitTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PGMappingKitTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0667CD11BF4049500682856 /* PGNetworkMappingTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGNetworkMappingTests.m; sourceTree = "<group>"; };
 		D06C35591BF01C06003D9D72 /* PGMappingKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PGMappingKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D06C355C1BF01C06003D9D72 /* PGMappingKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PGMappingKit.h; sourceTree = "<group>"; };
 		D06C355E1BF01C06003D9D72 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D06C35631BF01C06003D9D72 /* PGMappingKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PGMappingKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D06C35681BF01C06003D9D72 /* PGMappingKitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PGMappingKitTests.m; sourceTree = "<group>"; };
 		D06C356A1BF01C06003D9D72 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D06C35731BF01E6C003D9D72 /* PGNetworkHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGNetworkHandler.h; sourceTree = "<group>"; };
 		D06C35741BF01E6C003D9D72 /* PGNetworkHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGNetworkHandler.m; sourceTree = "<group>"; };
@@ -139,7 +139,7 @@
 		D06C35671BF01C06003D9D72 /* PGMappingKitTests */ = {
 			isa = PBXGroup;
 			children = (
-				D06C35681BF01C06003D9D72 /* PGMappingKitTests.m */,
+				D0667CD11BF4049500682856 /* PGNetworkMappingTests.m */,
 				D06C356A1BF01C06003D9D72 /* Info.plist */,
 			);
 			path = PGMappingKitTests;
@@ -387,7 +387,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D06C35691BF01C06003D9D72 /* PGMappingKitTests.m in Sources */,
+				D0667CD21BF4049500682856 /* PGNetworkMappingTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
