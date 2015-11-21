@@ -131,7 +131,7 @@
 
 #pragma mark - GET
 
-- (void)GET:(NSString *)URLString to:(NSManagedObjectContext *)context update:(BOOL)update mapping:(PGNetworkMapping *)mapping success:(void (^)(NSArray *results))success failure:(void (^)(NSError *error))failure finish:(void (^)())finish
+- (void)GET:(NSString *)URLString to:(NSManagedObjectContext *)context mapping:(PGNetworkMapping *)mapping update:(BOOL)update success:(void (^)(NSArray *results))success failure:(void (^)(NSError *error))failure finish:(void (^)())finish
 {
     [self.sessionManager GET:URLString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         if (self.isCanceled) {
