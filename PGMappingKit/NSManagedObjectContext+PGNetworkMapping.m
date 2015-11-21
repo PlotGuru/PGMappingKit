@@ -78,4 +78,9 @@
     return object;
 }
 
+- (NSArray *)objectsWithMapping:(PGNetworkMapping *)mapping error:(NSError *__autoreleasing *)error
+{
+    return  [self executeFetchRequest:[NSFetchRequest fetchRequestWithEntityName:mapping.entityName] error:error];
+}
+
 @end

@@ -40,7 +40,7 @@
 
 - (void)PUT:(NSString *)URLString from:(NSDictionary *)data success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure finish:(void (^)())finish;
 
-- (void)GET:(NSString *)URLString to:(NSManagedObjectContext *)context mapping:(PGNetworkMapping *)mapping success:(void (^)(NSArray *results))success failure:(void (^)(NSError *error))failure finish:(void (^)())finish;
+- (void)GET:(NSString *)URLString to:(NSManagedObjectContext *)context mapping:(PGNetworkMapping *)mapping update:(BOOL)update success:(void (^)(NSArray *results))success failure:(void (^)(NSError *error))failure finish:(void (^)())finish;
 
 - (void)GET:(NSString *)URLString success:(void (^)(id results))success failure:(void (^)(NSError *error))failure finish:(void (^)())finish;
 

@@ -131,18 +131,25 @@
 
 #pragma mark - GET
 
-- (void)GET:(NSString *)URLString to:(NSManagedObjectContext *)context mapping:(PGNetworkMapping *)mapping success:(void (^)(NSArray *results))success failure:(void (^)(NSError *error))failure finish:(void (^)())finish
+- (void)GET:(NSString *)URLString to:(NSManagedObjectContext *)context update:(BOOL)update mapping:(PGNetworkMapping *)mapping success:(void (^)(NSArray *results))success failure:(void (^)(NSError *error))failure finish:(void (^)())finish
 {
     [self.sessionManager GET:URLString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         if (self.isCanceled) {
             return;
         }
 
-        NSArray *responseArray = [responseObject isKindOfClass:[NSArray class]] ? responseObject : (responseObject ? @[responseObject] : nil);
-
-        NSMutableArray *results = [NSMutableArray array];
-
         NSError *error = nil;
+        
+        NSArray *oldObjects = [context objectsWithMapping:mapping error:&error];
+        
+        if (!update) {
+            for (NSManagedObject *oldObject in oldObjects) {
+                [context deleteObject:oldObject];
+            }
+        }
+
+        NSArray *responseArray = [responseObject isKindOfClass:[NSArray class]] ? responseObject : (responseObject ? @[responseObject] : nil);
+        NSMutableArray *results = [NSMutableArray array];
         for (id responseArrayItem in responseArray) {
             if ([responseArrayItem isKindOfClass:[NSDictionary class]]) {
                 [results addObject:[context save:mapping.entityName with:responseArrayItem mapping:mapping error:&error]];
