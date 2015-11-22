@@ -141,8 +141,13 @@
         NSError *error = nil;
         
         if (saveOption == PGSaveOptionReplaceAll) {
-            for (NSManagedObject *oldObject in [context objectsWithMapping:mapping error:&error]) {
-                [context deleteObject:oldObject];
+            NSArray *oldObjects = [context objectsWithMapping:mapping error:&error];
+            if (oldObjects && oldObjects.count) {
+                for (NSManagedObject *oldObject in oldObjects) {
+                    [context deleteObject:oldObject];
+                }
+                
+                [context save:&error];
             }
         }
         
@@ -151,7 +156,10 @@
         for (id responseArrayItem in responseArray) {
             if ([responseArrayItem isKindOfClass:[NSDictionary class]]) {
                 if (saveOption == PGSaveOptionReplace) {
-                    [context deleteObject:[context objectWithMapping:mapping data:responseArrayItem error:&error]];
+                    NSManagedObject *object = [context objectWithMapping:mapping data:responseArrayItem error:&error];
+                    if (object) {
+                        [context deleteObject:object];
+                    }
                 }
                 [results addObject:[context save:mapping.entityName with:responseArrayItem mapping:mapping error:&error]];
             }
