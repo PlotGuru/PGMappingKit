@@ -29,10 +29,10 @@
 #import "NSManagedObjectContext+PGObject.h"
 #import "NSManagedObjectContext+PGNetworkMapping.h"
 
-typedef NS_ENUM(NSInteger, PGSaveMethod) {
-    PGSaveMethodUpdate,
-    PGSaveMethodReplace,
-    PGSaveMethodReplaceAll,
+typedef NS_ENUM(NSInteger, PGSaveOption) {
+    PGSaveOptionUpdate,
+    PGSaveOptionReplace,
+    PGSaveOptionReplaceAll,
 };
 
 @interface PGNetworkHandler : NSObject
@@ -52,7 +52,7 @@ typedef NS_ENUM(NSInteger, PGSaveMethod) {
 
 - (void)PUT:(NSString *)URLString from:(NSDictionary *)data success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure finish:(void (^)())finish;
 
-- (void)GET:(NSString *)URLString to:(NSManagedObjectContext *)context mapping:(PGNetworkMapping *)mapping update:(PGSaveMethod)saveMethod success:(void (^)(NSArray *results))success failure:(void (^)(NSError *error))failure finish:(void (^)())finish;
+- (void)GET:(NSString *)URLString to:(NSManagedObjectContext *)context mapping:(PGNetworkMapping *)mapping option:(PGSaveOption)saveOption success:(void (^)(NSArray *results))success failure:(void (^)(NSError *error))failure finish:(void (^)())finish;
 
 - (void)GET:(NSString *)URLString success:(void (^)(id results))success failure:(void (^)(NSError *error))failure finish:(void (^)())finish;
 
