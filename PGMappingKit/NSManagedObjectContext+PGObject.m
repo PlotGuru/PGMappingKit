@@ -42,12 +42,12 @@
 
 - (id)objectWithMapping:(PGNetworkMapping *)mapping data:(NSDictionary *)data error:(NSError *__autoreleasing *)error
 {
-    return [self objectWithType:mapping.entityName identifier:data[mapping.mappedUniqueIdentifierKey] forKey:mapping.mappedUniqueIdentifierKey error:error];
+    return [self objectWithType:mapping.entityName identifier:data[mapping.mappedUniqueIdentifierKey] forKey:mapping.uniqueIdentifierKey error:error];
 }
 
 - (id)objectWithMapping:(PGNetworkMapping *)mapping identifier:(id)identifier error:(NSError *__autoreleasing *)error
 {
-    return [self objectWithType:mapping.entityName identifier:identifier forKey:mapping.mappedUniqueIdentifierKey error:error];
+    return [self objectWithType:mapping.entityName identifier:identifier forKey:mapping.uniqueIdentifierKey error:error];
 }
 
 - (NSArray *)objectsWithMapping:(PGNetworkMapping *)mapping error:(NSError *__autoreleasing *)error
