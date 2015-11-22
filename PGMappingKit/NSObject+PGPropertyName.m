@@ -21,13 +21,13 @@
 //  THE SOFTWARE.
 //
 
-@import Foundation;
-@import ObjectiveC.runtime;
+#import "NSObject+PGPropertyName.h"
 
-@interface NSObject (PGPropertyList)
+@implementation NSObject (PGPropertyName)
 
-+ (NSDictionary *)propertiesOfObject:(id)object;
-+ (NSDictionary *)propertiesOfClass:(Class)classType;
-+ (NSDictionary *)propertiesOfSubclass:(Class)classType;
++ (instancetype)nilObject
+{
+    return nil;
+}
 
 @end

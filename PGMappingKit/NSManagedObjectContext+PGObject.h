@@ -22,12 +22,20 @@
 //
 
 @import Foundation;
-@import ObjectiveC.runtime;
+@import CoreData;
 
-@interface NSObject (PGPropertyList)
+@class PGNetworkMapping;
 
-+ (NSDictionary *)propertiesOfObject:(id)object;
-+ (NSDictionary *)propertiesOfClass:(Class)classType;
-+ (NSDictionary *)propertiesOfSubclass:(Class)classType;
+@interface NSManagedObjectContext (PGObject)
+
+- (id)objectWithType:(NSString *)type identifier:(id)identifier forKey:(NSString *)key error:(NSError *__autoreleasing *)error;
+
+- (NSArray *)objectsWithType:(NSString *)type error:(NSError *__autoreleasing *)error;
+
+- (id)objectWithMapping:(PGNetworkMapping *)mapping data:(NSDictionary *)data error:(NSError *__autoreleasing *)error;
+
+- (id)objectWithMapping:(PGNetworkMapping *)mapping identifier:(id)identifier error:(NSError *__autoreleasing *)error;
+
+- (NSArray *)objectsWithMapping:(PGNetworkMapping *)mapping error:(NSError *__autoreleasing *)error;
 
 @end

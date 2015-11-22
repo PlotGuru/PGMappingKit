@@ -30,39 +30,39 @@
     return [self propertiesOfClass:[object class]];
 }
 
-+ (NSDictionary *)propertiesOfClass:(Class)class
++ (NSDictionary *)propertiesOfClass:(Class)classType
 {
-    return [self propertiesForHierarchyOfClass:class onDictionary:[NSMutableDictionary dictionary]];
+    return [self propertiesForHierarchyOfClass:classType onDictionary:[NSMutableDictionary dictionary]];
 }
 
-+ (NSDictionary *)propertiesOfSubclass:(Class)class
++ (NSDictionary *)propertiesOfSubclass:(Class)classType
 {
-    if (class == NULL) {
+    if (classType == NULL) {
         return nil;
     }
 
-    return [self propertiesForSubclass:class onDictionary:[NSMutableDictionary dictionary]];
+    return [self propertiesForSubclass:classType onDictionary:[NSMutableDictionary dictionary]];
 }
 
-+ (NSMutableDictionary *)propertiesForHierarchyOfClass:(Class)class onDictionary:(NSMutableDictionary *)properties
++ (NSMutableDictionary *)propertiesForHierarchyOfClass:(Class)classType onDictionary:(NSMutableDictionary *)properties
 {
-    if (class == NULL) {
+    if (classType == NULL) {
         return nil;
     }
 
-    if (class == [NSObject class]) {
+    if (classType == [NSObject class]) {
         return properties;
     }
 
-    [self propertiesForSubclass:class onDictionary:properties];
+    [self propertiesForSubclass:classType onDictionary:properties];
 
-    return [self propertiesForHierarchyOfClass:[class superclass] onDictionary:properties];
+    return [self propertiesForHierarchyOfClass:[classType superclass] onDictionary:properties];
 }
 
-+ (NSMutableDictionary *)propertiesForSubclass:(Class)class onDictionary:(NSMutableDictionary *)properties
++ (NSMutableDictionary *)propertiesForSubclass:(Class)classType onDictionary:(NSMutableDictionary *)properties
 {
     unsigned int numberOfProperties = 0;
-    objc_property_t *propertyList = class_copyPropertyList(class, &numberOfProperties);
+    objc_property_t *propertyList = class_copyPropertyList(classType, &numberOfProperties);
     for (unsigned int i = 0; i < numberOfProperties; i++) {
         objc_property_t property = propertyList[i];
         const char *propertyName = property_getName(property);

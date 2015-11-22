@@ -22,6 +22,7 @@
 //
 
 #import "NSManagedObjectContext+PGNetworkMapping.h"
+#import "PGNetworkMapping.h"
 #import "NSObject+PGKeyValueCoding.h"
 
 @implementation NSManagedObjectContext (PGNetworkMapping)
@@ -76,11 +77,6 @@
     }
     
     return object;
-}
-
-- (NSArray *)objectsWithMapping:(PGNetworkMapping *)mapping error:(NSError *__autoreleasing *)error
-{
-    return  [self executeFetchRequest:[NSFetchRequest fetchRequestWithEntityName:mapping.entityName] error:error];
 }
 
 @end

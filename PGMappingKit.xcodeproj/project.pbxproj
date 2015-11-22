@@ -24,6 +24,10 @@
 		D06C35861BF01E6C003D9D72 /* NSObject+PGPropertyList.m in Sources */ = {isa = PBXBuildFile; fileRef = D06C357C1BF01E6C003D9D72 /* NSObject+PGPropertyList.m */; };
 		D06C35891BF01E8B003D9D72 /* NSMutableDictionary+PGSafeCheck.h in Headers */ = {isa = PBXBuildFile; fileRef = D06C35871BF01E8B003D9D72 /* NSMutableDictionary+PGSafeCheck.h */; };
 		D06C358A1BF01E8B003D9D72 /* NSMutableDictionary+PGSafeCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = D06C35881BF01E8B003D9D72 /* NSMutableDictionary+PGSafeCheck.m */; };
+		D0C8CB491C0128F800A35C46 /* NSObject+PGPropertyName.h in Headers */ = {isa = PBXBuildFile; fileRef = D0C8CB471C0128F800A35C46 /* NSObject+PGPropertyName.h */; };
+		D0C8CB4A1C0128F800A35C46 /* NSObject+PGPropertyName.m in Sources */ = {isa = PBXBuildFile; fileRef = D0C8CB481C0128F800A35C46 /* NSObject+PGPropertyName.m */; };
+		D0C8CB4D1C01293400A35C46 /* NSManagedObjectContext+PGObject.h in Headers */ = {isa = PBXBuildFile; fileRef = D0C8CB4B1C01293400A35C46 /* NSManagedObjectContext+PGObject.h */; };
+		D0C8CB4E1C01293400A35C46 /* NSManagedObjectContext+PGObject.m in Sources */ = {isa = PBXBuildFile; fileRef = D0C8CB4C1C01293400A35C46 /* NSManagedObjectContext+PGObject.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +64,10 @@
 		D06C357C1BF01E6C003D9D72 /* NSObject+PGPropertyList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+PGPropertyList.m"; sourceTree = "<group>"; };
 		D06C35871BF01E8B003D9D72 /* NSMutableDictionary+PGSafeCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+PGSafeCheck.h"; sourceTree = "<group>"; };
 		D06C35881BF01E8B003D9D72 /* NSMutableDictionary+PGSafeCheck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+PGSafeCheck.m"; sourceTree = "<group>"; };
+		D0C8CB471C0128F800A35C46 /* NSObject+PGPropertyName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+PGPropertyName.h"; sourceTree = "<group>"; };
+		D0C8CB481C0128F800A35C46 /* NSObject+PGPropertyName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+PGPropertyName.m"; sourceTree = "<group>"; };
+		D0C8CB4B1C01293400A35C46 /* NSManagedObjectContext+PGObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObjectContext+PGObject.h"; sourceTree = "<group>"; };
+		D0C8CB4C1C01293400A35C46 /* NSManagedObjectContext+PGObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObjectContext+PGObject.m"; sourceTree = "<group>"; };
 		E39726664E3984FD3D34CFF9 /* Pods-PGMappingKitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PGMappingKitTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PGMappingKitTests/Pods-PGMappingKitTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -148,6 +156,10 @@
 		D06C358B1BF01E90003D9D72 /* PGExtension */ = {
 			isa = PBXGroup;
 			children = (
+				D0C8CB471C0128F800A35C46 /* NSObject+PGPropertyName.h */,
+				D0C8CB481C0128F800A35C46 /* NSObject+PGPropertyName.m */,
+				D0C8CB4B1C01293400A35C46 /* NSManagedObjectContext+PGObject.h */,
+				D0C8CB4C1C01293400A35C46 /* NSManagedObjectContext+PGObject.m */,
 				D06C35791BF01E6C003D9D72 /* NSObject+PGKeyValueCoding.h */,
 				D06C357A1BF01E6C003D9D72 /* NSObject+PGKeyValueCoding.m */,
 				D06C357B1BF01E6C003D9D72 /* NSObject+PGPropertyList.h */,
@@ -189,9 +201,11 @@
 				D06C35811BF01E6C003D9D72 /* PGNetworkMapping.h in Headers */,
 				D06C35831BF01E6C003D9D72 /* NSObject+PGKeyValueCoding.h in Headers */,
 				D06C35891BF01E8B003D9D72 /* NSMutableDictionary+PGSafeCheck.h in Headers */,
+				D0C8CB4D1C01293400A35C46 /* NSManagedObjectContext+PGObject.h in Headers */,
 				D06C355D1BF01C06003D9D72 /* PGMappingKit.h in Headers */,
 				D06C35851BF01E6C003D9D72 /* NSObject+PGPropertyList.h in Headers */,
 				D06C357D1BF01E6C003D9D72 /* PGNetworkHandler.h in Headers */,
+				D0C8CB491C0128F800A35C46 /* NSObject+PGPropertyName.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -379,7 +393,9 @@
 				D06C35801BF01E6C003D9D72 /* NSManagedObjectContext+PGNetworkMapping.m in Sources */,
 				D06C35821BF01E6C003D9D72 /* PGNetworkMapping.m in Sources */,
 				D06C35841BF01E6C003D9D72 /* NSObject+PGKeyValueCoding.m in Sources */,
+				D0C8CB4E1C01293400A35C46 /* NSManagedObjectContext+PGObject.m in Sources */,
 				D06C357E1BF01E6C003D9D72 /* PGNetworkHandler.m in Sources */,
+				D0C8CB4A1C0128F800A35C46 /* NSObject+PGPropertyName.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -22,12 +22,13 @@
 //
 
 @import Foundation;
-@import ObjectiveC.runtime;
 
-@interface NSObject (PGPropertyList)
+#define PGDataType(Class) NSStringFromClass([Class class])
 
-+ (NSDictionary *)propertiesOfObject:(id)object;
-+ (NSDictionary *)propertiesOfClass:(Class)classType;
-+ (NSDictionary *)propertiesOfSubclass:(Class)classType;
+#define PGDataKey(Class, PropertyName) @(((void)(NO && ((void)[Class nilObject].PropertyName, NO)), # PropertyName))
+
+@interface NSObject (PGPropertyName)
+
++ (instancetype)nilObject;
 
 @end

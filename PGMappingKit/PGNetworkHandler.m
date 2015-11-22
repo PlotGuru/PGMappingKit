@@ -131,7 +131,7 @@
 
 #pragma mark - GET
 
-- (void)GET:(NSString *)URLString to:(NSManagedObjectContext *)context mapping:(PGNetworkMapping *)mapping update:(BOOL)update success:(void (^)(NSArray *results))success failure:(void (^)(NSError *error))failure finish:(void (^)())finish
+- (void)GET:(NSString *)URLString to:(NSManagedObjectContext *)context mapping:(PGNetworkMapping *)mapping update:(PGSaveMethod)saveMethod success:(void (^)(NSArray *results))success failure:(void (^)(NSError *error))failure finish:(void (^)())finish
 {
     [self.sessionManager GET:URLString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         if (self.isCanceled) {
@@ -140,18 +140,19 @@
 
         NSError *error = nil;
         
-        NSArray *oldObjects = [context objectsWithMapping:mapping error:&error];
-        
-        if (!update) {
-            for (NSManagedObject *oldObject in oldObjects) {
+        if (saveMethod == PGSaveMethodReplaceAll) {
+            for (NSManagedObject *oldObject in [context objectsWithMapping:mapping error:&error]) {
                 [context deleteObject:oldObject];
             }
         }
-
+        
         NSArray *responseArray = [responseObject isKindOfClass:[NSArray class]] ? responseObject : (responseObject ? @[responseObject] : nil);
         NSMutableArray *results = [NSMutableArray array];
         for (id responseArrayItem in responseArray) {
             if ([responseArrayItem isKindOfClass:[NSDictionary class]]) {
+                if (saveMethod == PGSaveMethodReplace) {
+                    [context deleteObject:[context objectWithMapping:mapping data:responseArrayItem error:&error]];
+                }
                 [results addObject:[context save:mapping.entityName with:responseArrayItem mapping:mapping error:&error]];
             }
         }
