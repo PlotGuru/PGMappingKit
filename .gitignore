@@ -43,6 +43,12 @@ Pods/
 !Podfile
 !Podfile.lock
 
+# Carthage
+
+Carthage/
+
+!Cartfile
+!Cartfile.resolved
 
 # Reference
 # 
