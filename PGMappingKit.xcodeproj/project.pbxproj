@@ -40,7 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		D01424171C1A2E04008F1C91 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AFNetworking.framework; path = Carthage/Build/iOS/AFNetworking.framework; sourceTree = "<group>"; };
+		D01424171C1A2E04008F1C91 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AFNetworking.framework; path = ../Carthage/Build/iOS/AFNetworking.framework; sourceTree = "<group>"; };
 		D0667CD11BF4049500682856 /* PGNetworkMappingTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGNetworkMappingTests.m; sourceTree = "<group>"; };
 		D06C35591BF01C06003D9D72 /* PGMappingKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PGMappingKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D06C355C1BF01C06003D9D72 /* PGMappingKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PGMappingKit.h; sourceTree = "<group>"; };
@@ -85,13 +85,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		D06C354F1BF01C06003D9D72 = {
+		D014243D1C1A312D008F1C91 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				D01424171C1A2E04008F1C91 /* AFNetworking.framework */,
+			);
+			name = Frameworks;
+			path = PGMappingKit;
+			sourceTree = "<group>";
+		};
+		D06C354F1BF01C06003D9D72 = {
+			isa = PBXGroup;
+			children = (
 				D06C355B1BF01C06003D9D72 /* PGMappingKit */,
 				D06C35671BF01C06003D9D72 /* PGMappingKitTests */,
 				D06C355A1BF01C06003D9D72 /* Products */,
+				D014243D1C1A312D008F1C91 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};

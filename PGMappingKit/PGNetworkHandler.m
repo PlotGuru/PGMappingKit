@@ -21,7 +21,7 @@
 //  THE SOFTWARE.
 //
 
-#import <AFNetworking/AFNetworking.h>
+@import AFNetworking;
 
 #import "PGNetworkHandler.h"
 #import "NSObject+PGPropertyList.h"
@@ -74,22 +74,22 @@
 
 - (void)POST:(NSString *)URLString from:(NSDictionary *)data success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure finish:(void (^)())finish
 {
-    [self.sessionManager POST:URLString parameters:data success:^(NSURLSessionDataTask *task, id responseObject) {
+    [self.sessionManager POST:URLString parameters:data progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             if (success) {
                 success(responseObject);
             }
-
+            
             if (finish) {
                 finish();
             }
         }];
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             if (failure) {
                 failure(error);
             }
-
+            
             if (finish) {
                 finish();
             }
@@ -106,22 +106,22 @@
 
 - (void)PUT:(NSString *)URLString from:(NSDictionary *)data success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure finish:(void (^)())finish
 {
-    [self.sessionManager PUT:URLString parameters:data success:^(NSURLSessionDataTask *task, id responseObject) {
+    [self.sessionManager PUT:URLString parameters:data success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             if (success) {
                 success(responseObject);
             }
-
+            
             if (finish) {
                 finish();
             }
         }];
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             if (failure) {
                 failure(error);
             }
-
+            
             if (finish) {
                 finish();
             }
@@ -133,11 +133,11 @@
 
 - (void)GET:(NSString *)URLString to:(NSManagedObjectContext *)context mapping:(PGNetworkMapping *)mapping option:(PGSaveOption)saveOption success:(void (^)(NSArray *results))success failure:(void (^)(NSError *error))failure finish:(void (^)())finish
 {
-    [self.sessionManager GET:URLString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [self.sessionManager GET:URLString parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if (self.isCanceled) {
             return;
         }
-
+        
         NSError *error = nil;
         
         if (saveOption == PGSaveOptionReplaceAll) {
@@ -164,9 +164,9 @@
                 [results addObject:[context save:mapping.entityName with:responseArrayItem mapping:mapping error:&error]];
             }
         }
-
+        
         [context save:&error];
-
+        
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             if (!error) {
                 if (success) {
@@ -177,12 +177,12 @@
                     failure(error);
                 }
             }
-
+            
             if (finish) {
                 finish();
             }
         }];
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         if (self.isCanceled) {
             return;
         }
@@ -191,7 +191,7 @@
             if (failure) {
                 failure(error);
             }
-
+            
             if (finish) {
                 finish();
             }
@@ -201,7 +201,7 @@
 
 - (void)GET:(NSString *)URLString success:(void (^)(id results))success failure:(void (^)(NSError *error))failure finish:(void (^)())finish
 {
-    [self.sessionManager GET:URLString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [self.sessionManager GET:URLString parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if (self.isCanceled) {
             return;
         }
@@ -215,7 +215,7 @@
                 finish();
             }
         }];
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         if (self.isCanceled) {
             return;
         }
