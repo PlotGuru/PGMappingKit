@@ -40,7 +40,7 @@ typedef NS_ENUM(NSInteger, PGSaveOption) {
 @property (strong, nonatomic, readonly) NSURL *baseURL;
 @property (nonatomic, getter=isCanceled) BOOL canceled;
 
-- (instancetype)initWithBaseURL:(NSURL *)baseURL NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithBaseURL:(NSURL *)baseURL;
 
 - (NSMutableDictionary *)dataFromObject:(id)object mapping:(PGNetworkMapping *)mapping;
 

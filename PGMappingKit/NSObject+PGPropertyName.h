@@ -29,6 +29,6 @@
 
 @interface NSObject (PGPropertyName)
 
-+ (instancetype)nilObject;
++ (nullable instancetype)nilObject;
 
 @end

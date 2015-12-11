@@ -25,7 +25,7 @@
 
 @interface NSObject (PGKeyValueCoding)
 
-- (void)safelySetValue:(id)value forKey:(NSString *)key;
-- (void)safelyAddValue:(id)value forKey:(NSString *)key;
+- (void)safelySetValue:(nullable id)value forKey:(nonnull NSString *)key;
+- (void)safelyAddValue:(nullable id)value forKey:(nonnull NSString *)key;
 
 @end

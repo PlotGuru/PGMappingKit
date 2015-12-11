@@ -25,6 +25,6 @@
 
 @interface NSMutableDictionary (PGSafeCheck)
 
-- (void)setObjectIfExists:(id)anObject forKey:(id<NSCopying>)aKey;
+- (void)setObjectIfExists:(nullable id)anObject forKey:(nonnull id<NSCopying>)aKey;
 
 @end

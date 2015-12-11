@@ -25,17 +25,17 @@
 
 @implementation NSObject (PGPropertyList)
 
-+ (NSDictionary *)propertiesOfObject:(id)object
++ (nullable NSDictionary *)propertiesOfObject:(nullable id)object
 {
     return [self propertiesOfClass:[object class]];
 }
 
-+ (NSDictionary *)propertiesOfClass:(Class)classType
++ (nullable NSDictionary *)propertiesOfClass:(nullable Class)classType
 {
     return [self propertiesForHierarchyOfClass:classType onDictionary:[NSMutableDictionary dictionary]];
 }
 
-+ (NSDictionary *)propertiesOfSubclass:(Class)classType
++ (nullable NSDictionary *)propertiesOfSubclass:(nullable Class)classType
 {
     if (classType == NULL) {
         return nil;
@@ -44,7 +44,7 @@
     return [self propertiesForSubclass:classType onDictionary:[NSMutableDictionary dictionary]];
 }
 
-+ (NSMutableDictionary *)propertiesForHierarchyOfClass:(Class)classType onDictionary:(NSMutableDictionary *)properties
++ (nonnull NSMutableDictionary *)propertiesForHierarchyOfClass:(Class)classType onDictionary:(nonnull NSMutableDictionary *)properties
 {
     if (classType == NULL) {
         return nil;
@@ -59,7 +59,7 @@
     return [self propertiesForHierarchyOfClass:[classType superclass] onDictionary:properties];
 }
 
-+ (NSMutableDictionary *)propertiesForSubclass:(Class)classType onDictionary:(NSMutableDictionary *)properties
++ (nonnull NSMutableDictionary *)propertiesForSubclass:(Class)classType onDictionary:(nonnull NSMutableDictionary *)properties
 {
     unsigned int numberOfProperties = 0;
     objc_property_t *propertyList = class_copyPropertyList(classType, &numberOfProperties);

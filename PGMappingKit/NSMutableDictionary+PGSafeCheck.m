@@ -25,11 +25,11 @@
 
 @implementation NSMutableDictionary (PGSafeCheck)
 
-- (void)setObjectIfExists:(id)anObject forKey:(id<NSCopying>)aKey
+- (void)setObjectIfExists:(nullable id)anObject forKey:(nonnull id<NSCopying>)aKey
 {
-    if (anObject && aKey) {
+    if (anObject) {
         self[aKey] = anObject;
-    } else if (aKey) {
+    } else {
         [self removeObjectForKey:aKey];
     }
 }

@@ -26,7 +26,7 @@
 
 @implementation NSManagedObjectContext (PGObject)
 
-- (id)objectWithType:(NSString *)type identifier:(id)identifier forKey:(NSString *)key error:(NSError *__autoreleasing *)error
+- (nullable id)objectWithType:(nonnull NSString *)type identifier:(nullable id)identifier forKey:(nonnull NSString *)key error:(NSError **)error
 {
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:type];
 
@@ -35,22 +35,22 @@
     return [self executeFetchRequest:fetchRequest error:error].firstObject;
 }
 
-- (NSArray *)objectsWithType:(NSString *)type error:(NSError *__autoreleasing *)error
+- (nullable NSArray *)objectsWithType:(nonnull NSString *)type error:(NSError **)error
 {
     return [self executeFetchRequest:[NSFetchRequest fetchRequestWithEntityName:type] error:error];
 }
 
-- (id)objectWithMapping:(PGNetworkMapping *)mapping data:(NSDictionary *)data error:(NSError *__autoreleasing *)error
+- (nullable id)objectWithMapping:(nonnull PGNetworkMapping *)mapping data:(nullable NSDictionary *)data error:(NSError **)error
 {
-    return [self objectWithType:mapping.entityName identifier:data[mapping.mappedUniqueIdentifierKey] forKey:mapping.uniqueIdentifierKey error:error];
+    return [self objectWithType:mapping.entityName identifier:data ? data[mapping.mappedUniqueIdentifierKey] : nil forKey:mapping.uniqueIdentifierKey error:error];
 }
 
-- (id)objectWithMapping:(PGNetworkMapping *)mapping identifier:(id)identifier error:(NSError *__autoreleasing *)error
+- (nullable id)objectWithMapping:(nonnull PGNetworkMapping *)mapping identifier:(nullable id)identifier error:(NSError **)error
 {
     return [self objectWithType:mapping.entityName identifier:identifier forKey:mapping.uniqueIdentifierKey error:error];
 }
 
-- (NSArray *)objectsWithMapping:(PGNetworkMapping *)mapping error:(NSError *__autoreleasing *)error
+- (nullable NSArray *)objectsWithMapping:(nonnull PGNetworkMapping *)mapping error:(NSError **)error
 {
     return [self objectsWithType:mapping.entityName error:error];
 }

@@ -26,8 +26,8 @@
 
 @interface NSObject (PGPropertyList)
 
-+ (NSDictionary *)propertiesOfObject:(id)object;
-+ (NSDictionary *)propertiesOfClass:(Class)classType;
-+ (NSDictionary *)propertiesOfSubclass:(Class)classType;
++ (nullable NSDictionary *)propertiesOfObject:(nullable id)object;
++ (nullable NSDictionary *)propertiesOfClass:(nullable Class)classType;
++ (nullable NSDictionary *)propertiesOfSubclass:(nullable Class)classType;
 
 @end

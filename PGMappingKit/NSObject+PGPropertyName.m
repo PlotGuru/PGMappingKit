@@ -25,7 +25,7 @@
 
 @implementation NSObject (PGPropertyName)
 
-+ (instancetype)nilObject
++ (nullable instancetype)nilObject
 {
     return nil;
 }

@@ -25,19 +25,24 @@
 
 @implementation NSObject (PGKeyValueCoding)
 
-- (void)safelySetValue:(id)value forKey:(NSString *)key
+- (void)safelySetValue:(nullable id)value forKey:(nonnull NSString *)key
 {
     if ([self respondsToSelector:NSSelectorFromString(key)]) {
         [self setValue:value forKey:key];
     }
 }
 
-- (void)safelyAddValue:(id)value forKey:(NSString *)key
+- (void)safelyAddValue:(nullable id)value forKey:(nonnull NSString *)key
 {
     if ([self respondsToSelector:NSSelectorFromString(key)]) {
-        id newValue = [[self valueForKey:key] mutableCopy];
-        [newValue addObject:value];
-        [self setValue:newValue forKey:key];
+        id oldValue = [self valueForKey:key];
+        if ([oldValue respondsToSelector:@selector(mutableCopy)]) {
+            id newValue = [oldValue mutableCopy];
+            if ([newValue respondsToSelector:@selector(addObject:)] && value) {
+                [newValue addObject:value];
+                [self setValue:newValue forKey:key];
+            }
+        }
     }
 }
 
