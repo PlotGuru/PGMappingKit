@@ -158,8 +158,6 @@
 		D06C358B1BF01E90003D9D72 /* PGExtension */ = {
 			isa = PBXGroup;
 			children = (
-				D0C8CB4B1C01293400A35C46 /* NSManagedObjectContext+PGObject.h */,
-				D0C8CB4C1C01293400A35C46 /* NSManagedObjectContext+PGObject.m */,
 				D06C35871BF01E8B003D9D72 /* NSMutableDictionary+PGSafeCheck.h */,
 				D06C35881BF01E8B003D9D72 /* NSMutableDictionary+PGSafeCheck.m */,
 				D06C35791BF01E6C003D9D72 /* NSObject+PGKeyValueCoding.h */,
@@ -175,6 +173,8 @@
 			children = (
 				D06C35771BF01E6C003D9D72 /* PGMappingDescription.h */,
 				D06C35781BF01E6C003D9D72 /* PGMappingDescription.m */,
+				D0C8CB4B1C01293400A35C46 /* NSManagedObjectContext+PGObject.h */,
+				D0C8CB4C1C01293400A35C46 /* NSManagedObjectContext+PGObject.m */,
 				D0C8CB471C0128F800A35C46 /* NSObject+PGNilObject.h */,
 				D0C8CB481C0128F800A35C46 /* NSObject+PGNilObject.m */,
 			);
