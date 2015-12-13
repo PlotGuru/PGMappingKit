@@ -21,10 +21,9 @@
 //  THE SOFTWARE.
 //
 
-@import Foundation;
 @import AFNetworking;
 
-@class PGNetworkMapping;
+@class PGMappingDescription;
 
 NS_ASSUME_NONNULL_BEGIN
 

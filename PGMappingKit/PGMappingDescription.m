@@ -21,9 +21,9 @@
 //  THE SOFTWARE.
 //
 
-#import "PGNetworkMapping.h"
+#import "PGMappingDescription.h"
 
-@interface PGNetworkMapping ()
+@interface PGMappingDescription ()
 
 @property (strong, nonatomic) NSString *entityName;
 @property (strong, nonatomic) NSString *mappedKey;
@@ -35,19 +35,19 @@
 
 @end
 
-@implementation PGNetworkMapping
+@implementation PGMappingDescription
 
-+ (instancetype)mappingFromDescription:(NSArray *)entityArray mapping:(NSDictionary *)mappingDictionary
++ (instancetype)mappingFromDescription:(NSArray *)entityArray description:(NSDictionary *)mappingDictionary
 {
-    return [[self alloc] initWithDescription:entityArray mapping:mappingDictionary];
+    return [[self alloc] initWithDescription:entityArray description:mappingDictionary];
 }
 
 - (instancetype)init
 {
-    return [self initWithDescription:nil mapping:nil];
+    return [self initWithDescription:nil description:nil];
 }
 
-- (instancetype)initWithDescription:(NSArray *)entityArray mapping:(NSDictionary *)mappingDictionary
+- (instancetype)initWithDescription:(NSArray *)entityArray description:(NSDictionary *)mappingDictionary
 {
     self = [super init];
 

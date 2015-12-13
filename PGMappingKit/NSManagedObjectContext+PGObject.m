@@ -22,7 +22,7 @@
 //
 
 #import "NSManagedObjectContext+PGObject.h"
-#import "PGNetworkMapping.h"
+#import "PGMappingDescription.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -42,17 +42,17 @@ NS_ASSUME_NONNULL_BEGIN
     return [self executeFetchRequest:[NSFetchRequest fetchRequestWithEntityName:type] error:error];
 }
 
-- (nullable id)objectWithMapping:(PGNetworkMapping *)mapping data:(nullable NSDictionary *)data error:(NSError **)error
+- (nullable id)objectWithMapping:(PGMappingDescription *)mapping data:(nullable NSDictionary *)data error:(NSError **)error
 {
     return [self objectWithType:mapping.entityName identifier:data ? data[mapping.mappedUniqueIdentifierKey] : nil forKey:mapping.uniqueIdentifierKey error:error];
 }
 
-- (nullable id)objectWithMapping:(PGNetworkMapping *)mapping identifier:(nullable id)identifier error:(NSError **)error
+- (nullable id)objectWithMapping:(PGMappingDescription *)mapping identifier:(nullable id)identifier error:(NSError **)error
 {
     return [self objectWithType:mapping.entityName identifier:identifier forKey:mapping.uniqueIdentifierKey error:error];
 }
 
-- (nullable NSArray *)objectsWithMapping:(PGNetworkMapping *)mapping error:(NSError **)error
+- (nullable NSArray *)objectsWithMapping:(PGMappingDescription *)mapping error:(NSError **)error
 {
     return [self objectsWithType:mapping.entityName error:error];
 }

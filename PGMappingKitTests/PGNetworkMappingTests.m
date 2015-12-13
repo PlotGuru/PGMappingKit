@@ -23,9 +23,9 @@
 
 @import XCTest;
 
-#import "PGNetworkMapping.h"
+#import "PGMappingDescription.h"
 
-@interface PGNetworkMappingTests : XCTestCase
+@interface PGMappingDescriptionTests : XCTestCase
 
 @property (strong, nonatomic) NSArray *userInfoDescriptionArray;
 @property (strong, nonatomic) NSDictionary *userInfoMappingDictionary;
@@ -44,7 +44,7 @@
 
 @end
 
-@implementation PGNetworkMappingTests
+@implementation PGMappingDescriptionTests
 
 - (void)setUp
 {
@@ -73,8 +73,8 @@
 
 - (void)testInit
 {
-    PGNetworkMapping *mappingA = [PGNetworkMapping mappingFromDescription:self.userInfoDescriptionArray mapping:self.userInfoMappingDictionary];
-    PGNetworkMapping *mappingB = [[PGNetworkMapping alloc] initWithDescription:self.userInfoDescriptionArray mapping:self.userInfoMappingDictionary];
+    PGMappingDescription *mappingA = [PGMappingDescription mappingFromDescription:self.userInfoDescriptionArray description:self.userInfoMappingDictionary];
+    PGMappingDescription *mappingB = [[PGMappingDescription alloc] initWithDescription:self.userInfoDescriptionArray description:self.userInfoMappingDictionary];
 
     XCTAssertEqualObjects(mappingA.entityName, mappingB.entityName);
     XCTAssertEqualObjects(mappingA.mappedKey, mappingB.mappedKey);
@@ -83,13 +83,13 @@
     XCTAssertEqualObjects([mappingA mappingForKey:self.imageURLKey], [mappingB mappingForKey:self.imageURLKey]);
     XCTAssertEqualObjects([mappingA mappingForKey:self.usernameKey], [mappingB mappingForKey:self.usernameKey]);
 
-    XCTAssertNoThrow([PGNetworkMapping mappingFromDescription:nil mapping:nil]);
-    XCTAssertNoThrow([PGNetworkMapping new]);
+    XCTAssertNoThrow([PGMappingDescription mappingFromDescription:nil description:nil]);
+    XCTAssertNoThrow([PGMappingDescription new]);
 }
 
 - (void)testSimpleMapping
 {
-    PGNetworkMapping *mapping = [PGNetworkMapping mappingFromDescription:self.userInfoDescriptionArray mapping:self.userInfoMappingDictionary];
+    PGMappingDescription *mapping = [PGMappingDescription mappingFromDescription:self.userInfoDescriptionArray description:self.userInfoMappingDictionary];
 
     XCTAssertEqualObjects(mapping.entityName, self.userInfoEntityName);
     XCTAssertEqualObjects(mapping.mappedKey, self.userInfoMappedKey);
@@ -106,8 +106,8 @@
 
 - (void)testNestedMapping
 {
-    PGNetworkMapping *userInfoMapping = [PGNetworkMapping mappingFromDescription:self.userInfoDescriptionArray mapping:self.userInfoMappingDictionary];
-    PGNetworkMapping *userListMapping = [PGNetworkMapping mappingFromDescription:@[@{@"user_lists": @"PGUserList"}, @{@"list_id": @"listID"}] mapping:@{@"list_name": @"listName", @"users": userInfoMapping}];
+    PGMappingDescription *userInfoMapping = [PGMappingDescription mappingFromDescription:self.userInfoDescriptionArray description:self.userInfoMappingDictionary];
+    PGMappingDescription *userListMapping = [PGMappingDescription mappingFromDescription:@[@{@"user_lists": @"PGUserList"}, @{@"list_id": @"listID"}] description:@{@"list_name": @"listName", @"users": userInfoMapping}];
 
     XCTAssertEqualObjects(userListMapping.entityName, @"PGUserList");
 

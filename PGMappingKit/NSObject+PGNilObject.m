@@ -21,7 +21,7 @@
 //  THE SOFTWARE.
 //
 
-#import "NSObject+PGPropertyName.h"
+#import "NSObject+PGNilObject.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

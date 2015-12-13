@@ -21,13 +21,13 @@
 //  THE SOFTWARE.
 //
 
-#import "NSManagedObjectContext+PGNetworkMapping.h"
-#import "PGNetworkMapping.h"
+#import "NSManagedObjectContext+PGMapping.h"
+#import "PGMappingDescription.h"
 #import "NSObject+PGKeyValueCoding.h"
 
-@implementation NSManagedObjectContext (PGNetworkMapping)
+@implementation NSManagedObjectContext (PGMappingDescription)
 
-- (id)save:(NSString *)type with:(nullable NSDictionary *)data mapping:(PGNetworkMapping *)mapping error:(NSError **)error
+- (id)save:(NSString *)type with:(nullable NSDictionary *)data description:(PGMappingDescription *)mapping error:(NSError **)error
 {
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:type];
     fetchRequest.predicate = [NSPredicate predicateWithFormat:@"%K == %@", mapping.uniqueIdentifierKey, data[mapping.mappedUniqueIdentifierKey]];
@@ -38,25 +38,25 @@
         object = [NSEntityDescription insertNewObjectForEntityForName:type inManagedObjectContext:self];
     }
 
-    return [self save:data to:object mapping:mapping error:error];
+    return [self save:data to:object description:mapping error:error];
 }
 
-- (id)save:(nullable NSDictionary *)data to:(id)object mapping:(PGNetworkMapping *)mapping error:(NSError **)error
+- (id)save:(nullable NSDictionary *)data to:(id)object description:(PGMappingDescription *)mapping error:(NSError **)error
 {
     for (NSString *key in data.allKeys) {
         id mappedKey = [mapping mappingForKey:key];
         id value = data[key];
 
-        if ([mappedKey isKindOfClass:[PGNetworkMapping class]]) {
-            PGNetworkMapping *mappedMapping = mappedKey;
+        if ([mappedKey isKindOfClass:[PGMappingDescription class]]) {
+            PGMappingDescription *mappedMapping = mappedKey;
 
             if ([value isKindOfClass:[NSDictionary class]]) {
-                [object safelySetValue:[self save:mappedMapping.entityName with:value mapping:mappedMapping error:error] forKey:mappedMapping.mappedKey];
+                [object safelySetValue:[self save:mappedMapping.entityName with:value description:mappedMapping error:error] forKey:mappedMapping.mappedKey];
             } else if ([value isKindOfClass:[NSArray class]]) {
                 NSArray *dataArray = value;
                 for (id data in dataArray) {
                     if ([data isKindOfClass:[NSDictionary class]]) {
-                        [object safelyAddValue:[self save:mappedMapping.entityName with:data mapping:mappedMapping error:error] forKey:mappedMapping.mappedKey];
+                        [object safelyAddValue:[self save:mappedMapping.entityName with:data description:mappedMapping error:error] forKey:mappedMapping.mappedKey];
                     }
                 }
             } else {

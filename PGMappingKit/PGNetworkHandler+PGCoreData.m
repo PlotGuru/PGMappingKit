@@ -22,13 +22,15 @@
 //
 
 #import "PGNetworkHandler+PGCoreData.h"
-#import "PGNetworkMapping.h"
-#import "NSObject+PGPropertyList.h"
+#import "PGMappingDescription.h"
+#import "NSManagedObjectContext+PGObject.h"
+#import "NSManagedObjectContext+PGMapping.h"
 #import "NSMutableDictionary+PGSafeCheck.h"
+#import "NSObject+PGPropertyList.h"
 
 @implementation PGNetworkHandler (PGCoreData)
 
-- (NSMutableDictionary *)dataFromObject:(id)object mapping:(PGNetworkMapping *)mapping
+- (NSMutableDictionary *)dataFromObject:(id)object mapping:(PGMappingDescription *)mapping
 {
     NSMutableDictionary *data = [NSMutableDictionary dictionary];
     
@@ -43,7 +45,7 @@
 
 - (nullable NSURLSessionDataTask *)PUT:(NSString *)URLString
                                   from:(nullable id)object
-                               mapping:(PGNetworkMapping *)mapping
+                               mapping:(PGMappingDescription *)mapping
                                success:(nullable void (^)(NSURLSessionDataTask *task, id _Nullable responseObject))success
                                failure:(nullable void (^)(NSURLSessionDataTask * _Nullable task, NSError *error))failure
                                 finish:(nullable void (^)(NSURLSessionDataTask *task))finish
@@ -53,7 +55,7 @@
 
 - (nullable NSURLSessionDataTask *)POST:(NSString *)URLString
                                    from:(nullable id)object
-                                mapping:(PGNetworkMapping *)mapping
+                                mapping:(PGMappingDescription *)mapping
                                progress:(nullable void (^)(NSProgress *progress))progress
                                 success:(nullable void (^)(NSURLSessionDataTask *task, id _Nullable responseObject))success
                                 failure:(nullable void (^)(NSURLSessionDataTask * _Nullable task, NSError *error))failure
@@ -65,7 +67,7 @@
 - (nullable NSURLSessionDataTask *)GET:(NSString *)URLString
                                   from:(nullable id)object
                                     to:(NSManagedObjectContext *)context
-                               mapping:(PGNetworkMapping *)mapping
+                               mapping:(PGMappingDescription *)mapping
                                 option:(PGSaveOption)option
                               progress:(nullable void (^)(NSProgress *progress))progress
                                success:(nullable void (^)(NSURLSessionDataTask *task, NSArray *results))success
@@ -96,7 +98,7 @@
                         [context deleteObject:object];
                     }
                 }
-                [results addObject:[context save:mapping.entityName with:responseArrayItem mapping:mapping error:&error]];
+                [results addObject:[context save:mapping.entityName with:responseArrayItem description:mapping error:&error]];
             }
         }
         

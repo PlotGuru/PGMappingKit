@@ -24,12 +24,12 @@
 @import Foundation;
 
 /**
- *  `PGNetworkMapping` can be used to describe the relationship between a Core Data entity and its related data. It also support nested mapping and can work with `NSManagedObjectContext+PGSaveWithMapping.h` category to save any data into a Core Data database without the need to manually write any custom saving methods.
+ *  `PGMappingDescription` can be used to describe the relationship between a Core Data entity and its related data. It also support nested mapping and can work with `NSManagedObjectContext+PGSaveWithMapping.h` category to save any data into a Core Data database without the need to manually write any custom saving methods.
  */
-@interface PGNetworkMapping : NSObject
+@interface PGMappingDescription : NSObject
 
 /**
- *  The name for the Core Data entity used in nested mapping.
+ *  The name for the Core Data entity.
  */
 @property (strong, nonatomic, readonly) NSString *entityName;
 
@@ -49,40 +49,40 @@
 @property (strong, nonatomic, readonly) NSString *mappedUniqueIdentifierKey;
 
 /**
- *  Creates and returns a `PGNetworkMapping` object.
+ *  Creates and returns a `PGMappingDescription` object.
  *
  *  @param entityArray It is used to specify entity information. It should contain two dictionaries. The first dictionary is used to define `entityName` and `mappedKey` properties where `mappedKey` is the key and `entityName` is the object. The second dictionary is used to define `uniqueIdentifierKey` and and `mappedUniqueIdentifierKey` properties where `mappedUniqueIdentifierKey` is the key and `uniqueIdentifierKey` is the object. They don't need to be included again in `mappingDictionary`. Example: `@[@{@"user_infos": @"userInfo"}, @{@"id": @"uniqueID"}]`
  *  @param mappingDictionary It is used to create the mapping relationships between attributes and their related data where data's keys are keys and attributes' names are objects. Example: `@{@"first_name": @"firstName", @"image_url": @"imageURL"}` When nil is passed in, `mappingForKey:` will always return the key,
  *
- *  @return Created `PGNetworkMapping` object.
+ *  @return Created `PGMappingDescription` object.
  */
-+ (instancetype)mappingFromDescription:(NSArray *)entityArray mapping:(NSDictionary *)mappingDictionary;
++ (instancetype)mappingFromDescription:(NSArray *)entityArray description:(NSDictionary *)mappingDictionary;
 
 /**
- *  Creates and returns a `PGNetworkMapping` object.
+ *  Creates and returns a `PGMappingDescription` object.
  *
  *  @param entityArray It is used to specify entity information. It should contain two dictionaries. The first dictionary is used to define `entityName` and `mappedKey` properties where `mappedKey` is the key and `entityName` is the object. The second dictionary is used to define `uniqueIdentifierKey` and and `mappedUniqueIdentifierKey` properties where `mappedUniqueIdentifierKey` is the key and `uniqueIdentifierKey` is the object. They don't need to be included again in `mappingDictionary`. Example: `@[@{@"user_infos": @"userInfo"}, @{@"id": @"uniqueID"}]`
  *  @param mappingDictionary It is used to create the mapping relationships between attributes and their related data where data's keys are keys and attributes' names are objects. Example: `@{@"first_name": @"firstName", @"image_url": @"imageURL"}` When nil is passed in, `mappingForKey:` will always return the key,
  *
- *  @return Created `PGNetworkMapping` object.
+ *  @return Created `PGMappingDescription` object.
  */
-- (instancetype)initWithDescription:(NSArray *)entityArray mapping:(NSDictionary *)mappingDictionary NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithDescription:(NSArray *)entityArray description:(NSDictionary *)mappingDictionary NS_DESIGNATED_INITIALIZER;
 
 /**
- *  Returns a attribute's name or another `PGNetworkMapping` object if is nested.
+ *  Returns a attribute's name or another `PGMappingDescription` object if is nested.
  *
  *  @param key The key used to represent the attribute.
  *
- *  @return The attribute's name or another `PGNetworkMapping` object (if nested) represented by the key. Will return `nil` if no value is represented by the key.
+ *  @return The attribute's name or another `PGMappingDescription` object (if nested) represented by the key. Will return `nil` if no value is represented by the key.
  */
 - (id)mappingForKey:(NSString *)key;
 
 /**
  *  Returns a key.
  *
- *  @param mapping The attribute's name or another `PGNetworkMapping` object if is nested.
+ *  @param mapping The attribute's name or another `PGMappingDescription` object if is nested.
  *
- *  @return The key represents the attribute or another `PGNetworkMapping` object (if nested). Will return `nil` if no key represents the value.
+ *  @return The key represents the attribute or another `PGMappingDescription` object (if nested). Will return `nil` if no key represents the value.
  */
 - (NSString *)keyForMapping:(id)mapping;
 

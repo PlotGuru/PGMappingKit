@@ -22,7 +22,7 @@
 //
 
 #import "PGNetworkHandler.h"
-#import "PGNetworkMapping.h"
+#import "PGMappingDescription.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

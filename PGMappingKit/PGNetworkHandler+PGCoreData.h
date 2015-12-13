@@ -30,26 +30,23 @@ typedef NS_ENUM(NSInteger, PGSaveOption) {
 };
 
 #import "PGNetworkHandler.h"
-#import "NSObject+PGPropertyName.h"
-#import "NSManagedObjectContext+PGObject.h"
-#import "NSManagedObjectContext+PGNetworkMapping.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PGNetworkHandler (PGCoreData)
 
-- (NSMutableDictionary *)dataFromObject:(nullable id)object mapping:(PGNetworkMapping *)mapping;
+- (NSMutableDictionary *)dataFromObject:(nullable id)object mapping:(PGMappingDescription *)mapping;
 
 - (nullable NSURLSessionDataTask *)PUT:(NSString *)URLString
                                   from:(nullable id)object
-                               mapping:(PGNetworkMapping *)mapping
+                               mapping:(PGMappingDescription *)mapping
                                success:(nullable void (^)(NSURLSessionDataTask *task, id _Nullable responseObject))success
                                failure:(nullable void (^)(NSURLSessionDataTask * _Nullable task, NSError *error))failure
                                 finish:(nullable void (^)(NSURLSessionDataTask *task))finish;
 
 - (nullable NSURLSessionDataTask *)POST:(NSString *)URLString
                                    from:(nullable id)object
-                                mapping:(PGNetworkMapping *)mapping
+                                mapping:(PGMappingDescription *)mapping
                                progress:(nullable void (^)(NSProgress *progress))progress
                                 success:(nullable void (^)(NSURLSessionDataTask *task, id _Nullable responseObject))success
                                 failure:(nullable void (^)(NSURLSessionDataTask * _Nullable task, NSError *error))failure
@@ -58,7 +55,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable NSURLSessionDataTask *)GET:(NSString *)URLString
                                   from:(nullable id)object
                                     to:(NSManagedObjectContext *)context
-                               mapping:(PGNetworkMapping *)mapping
+                               mapping:(PGMappingDescription *)mapping
                                 option:(PGSaveOption)option
                               progress:(nullable void (^)(NSProgress *progress))progress
                                success:(nullable void (^)(NSURLSessionDataTask *task, NSArray *results))success
