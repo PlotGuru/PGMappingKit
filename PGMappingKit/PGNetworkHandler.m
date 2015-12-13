@@ -21,109 +21,97 @@
 //  THE SOFTWARE.
 //
 
-@import AFNetworking;
-
 #import "PGNetworkHandler.h"
-#import "NSObject+PGPropertyList.h"
-#import "NSMutableDictionary+PGSafeCheck.h"
+#import "PGNetworkMapping.h"
 
-@interface PGNetworkHandler ()
-
-@property (strong, nonatomic) NSURL *baseURL;
-@property (strong, nonatomic, readonly, nonnull) AFHTTPSessionManager *sessionManager;
-
-@end
+NS_ASSUME_NONNULL_BEGIN
 
 @implementation PGNetworkHandler
 
-#pragma mark - Init Methods
-
-- (instancetype)init
+- (instancetype)initWithBaseURL:(nullable NSURL *)url sessionConfiguration:(nullable NSURLSessionConfiguration *)configuration
 {
-    return [self initWithBaseURL:nil];
-}
-
-- (instancetype)initWithBaseURL:(NSURL *)baseURL
-{
-    self = [super init];
+    self = [super initWithBaseURL:url sessionConfiguration:configuration];
     if (self) {
-        self.baseURL = baseURL;
+        self.requestSerializer = [AFJSONRequestSerializer serializer];
+        self.responseSerializer = [AFJSONResponseSerializer serializer];
     }
     return self;
 }
 
-#pragma mark - POST
+#pragma mark - PUT
 
-- (NSMutableDictionary *)dataFromObject:(id)object mapping:(PGNetworkMapping *)mapping
+- (nullable NSURLSessionDataTask *)PUT:(NSString *)URLString
+                                  from:(nullable NSDictionary *)data
+                               success:(nullable void (^)(NSURLSessionDataTask *task, id _Nullable responseObject))success
+                               failure:(nullable void (^)(NSURLSessionDataTask * _Nullable task, NSError *error))failure
+                                finish:(nullable void (^)(NSURLSessionDataTask *task))finish
 {
-    NSMutableDictionary *data = [NSMutableDictionary dictionary];
-
-    NSDictionary *properties = [NSObject propertiesOfObject:object];
-    for (NSString *propertyName in properties.allKeys) {
-        NSString *key = [mapping keyForMapping:propertyName];
-        [data setObjectIfExists:[object valueForKey:propertyName] forKey:key];
-    }
-
-    return data;
-}
-
-- (void)POST:(NSString *)URLString from:(id)object mapping:(PGNetworkMapping *)mapping success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure finish:(void (^)())finish
-{
-    [self POST:URLString from:[self dataFromObject:object mapping:mapping] success:success failure:failure finish:finish];
-}
-
-- (void)POST:(NSString *)URLString from:(NSDictionary *)data success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure finish:(void (^)())finish
-{
-    [self.sessionManager POST:URLString parameters:data progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    return [self PUT:URLString parameters:data success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if (self.isCanceled) {
+            return;
+        }
+        
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             if (success) {
-                success(responseObject);
+                success(task, responseObject);
             }
             
             if (finish) {
-                finish();
+                finish(task);
             }
         }];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        if (self.isCanceled) {
+            return;
+        }
+        
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             if (failure) {
-                failure(error);
+                failure(task, error);
             }
             
             if (finish) {
-                finish();
+                finish(task);
             }
         }];
     }];
 }
 
-#pragma mark - PUT
+#pragma mark - POST
 
-- (void)PUT:(NSString *)URLString from:(id)object mapping:(PGNetworkMapping *)mapping success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure finish:(void (^)())finish
+- (nullable NSURLSessionDataTask *)POST:(NSString *)URLString
+                                   from:(nullable NSDictionary *)data
+                               progress:(nullable void (^)(NSProgress *progress))progress
+                                success:(nullable void (^)(NSURLSessionDataTask *task, id _Nullable responseObject))success
+                                failure:(nullable void (^)(NSURLSessionDataTask * _Nullable task, NSError *error))failure
+                                 finish:(nullable void (^)(NSURLSessionDataTask *task))finish
 {
-    [self PUT:URLString from:[self dataFromObject:object mapping:mapping] success:success failure:failure finish:finish];
-}
-
-- (void)PUT:(NSString *)URLString from:(NSDictionary *)data success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure finish:(void (^)())finish
-{
-    [self.sessionManager PUT:URLString parameters:data success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    return [self POST:URLString parameters:data progress:progress success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if (self.isCanceled) {
+            return;
+        }
+        
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             if (success) {
-                success(responseObject);
+                success(task, responseObject);
             }
             
             if (finish) {
-                finish();
+                finish(task);
             }
         }];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        if (self.isCanceled) {
+            return;
+        }
+        
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             if (failure) {
-                failure(error);
+                failure(task, error);
             }
             
             if (finish) {
-                finish();
+                finish(task);
             }
         }];
     }];
@@ -131,88 +119,25 @@
 
 #pragma mark - GET
 
-- (void)GET:(NSString *)URLString to:(NSManagedObjectContext *)context mapping:(PGNetworkMapping *)mapping option:(PGSaveOption)saveOption success:(void (^)(NSArray *results))success failure:(void (^)(NSError *error))failure finish:(void (^)())finish
+- (nullable NSURLSessionDataTask *)GET:(NSString *)URLString
+                                  from:(nullable NSDictionary *)data
+                              progress:(nullable void (^)(NSProgress *progress))progress
+                               success:(nullable void (^)(NSURLSessionDataTask *task, id _Nullable responseObject))success
+                               failure:(nullable void (^)(NSURLSessionDataTask * _Nullable task, NSError *error))failure
+                                finish:(nullable void (^)(NSURLSessionDataTask *task))finish
 {
-    [self.sessionManager GET:URLString parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        if (self.isCanceled) {
-            return;
-        }
-        
-        NSError *error = nil;
-        
-        if (saveOption == PGSaveOptionReplaceAll) {
-            NSArray *oldObjects = [context objectsWithMapping:mapping error:&error];
-            if (oldObjects && oldObjects.count) {
-                for (NSManagedObject *oldObject in oldObjects) {
-                    [context deleteObject:oldObject];
-                }
-                
-                [context save:&error];
-            }
-        }
-        
-        NSArray *responseArray = [responseObject isKindOfClass:[NSArray class]] ? responseObject : (responseObject ? @[responseObject] : nil);
-        NSMutableArray *results = [NSMutableArray array];
-        for (id responseArrayItem in responseArray) {
-            if ([responseArrayItem isKindOfClass:[NSDictionary class]]) {
-                if (saveOption == PGSaveOptionReplace) {
-                    NSManagedObject *object = [context objectWithMapping:mapping data:responseArrayItem error:&error];
-                    if (object) {
-                        [context deleteObject:object];
-                    }
-                }
-                [results addObject:[context save:mapping.entityName with:responseArrayItem mapping:mapping error:&error]];
-            }
-        }
-        
-        [context save:&error];
-        
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            if (!error) {
-                if (success) {
-                    success(results.copy);
-                }
-            } else {
-                if (failure) {
-                    failure(error);
-                }
-            }
-            
-            if (finish) {
-                finish();
-            }
-        }];
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        if (self.isCanceled) {
-            return;
-        }
-        
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            if (failure) {
-                failure(error);
-            }
-            
-            if (finish) {
-                finish();
-            }
-        }];
-    }];
-}
-
-- (void)GET:(NSString *)URLString success:(void (^)(id results))success failure:(void (^)(NSError *error))failure finish:(void (^)())finish
-{
-    [self.sessionManager GET:URLString parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    return [self GET:URLString parameters:data progress:progress success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if (self.isCanceled) {
             return;
         }
 
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             if (success) {
-                success(responseObject);
+                success(task, responseObject);
             }
 
             if (finish) {
-                finish();
+                finish(task);
             }
         }];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -222,40 +147,16 @@
 
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             if (failure) {
-                failure(error);
+                failure(task, error);
             }
 
             if (finish) {
-                finish();
+                finish(task);
             }
         }];
     }];
 }
 
-#pragma mark - Authorization Header Methods
-
-- (void)setAuthorizationHeaderFieldWithUsername:(NSString *)username password:(NSString *)password
-{
-    [self.sessionManager.requestSerializer setAuthorizationHeaderFieldWithUsername:username password:password];
-}
-
-- (void)clearAuthorizationHeader
-{
-    [self.sessionManager.requestSerializer clearAuthorizationHeader];
-}
-
-#pragma mark - Setter & Getter Methods
-
-@synthesize sessionManager = _sessionManager;
-
-- (AFHTTPSessionManager *)sessionManager
-{
-    if (!_sessionManager) {
-        _sessionManager = [[AFHTTPSessionManager alloc] initWithBaseURL:self.baseURL];
-        _sessionManager.requestSerializer = [AFJSONRequestSerializer serializer];
-    }
-
-    return _sessionManager;
-}
-
 @end
+
+NS_ASSUME_NONNULL_END

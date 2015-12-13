@@ -24,9 +24,11 @@
 #import "NSManagedObjectContext+PGObject.h"
 #import "PGNetworkMapping.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @implementation NSManagedObjectContext (PGObject)
 
-- (nullable id)objectWithType:(nonnull NSString *)type identifier:(nullable id)identifier forKey:(nonnull NSString *)key error:(NSError **)error
+- (nullable id)objectWithType:(NSString *)type identifier:(nullable id)identifier forKey:(NSString *)key error:(NSError **)error
 {
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:type];
 
@@ -35,24 +37,26 @@
     return [self executeFetchRequest:fetchRequest error:error].firstObject;
 }
 
-- (nullable NSArray *)objectsWithType:(nonnull NSString *)type error:(NSError **)error
+- (nullable NSArray *)objectsWithType:(NSString *)type error:(NSError **)error
 {
     return [self executeFetchRequest:[NSFetchRequest fetchRequestWithEntityName:type] error:error];
 }
 
-- (nullable id)objectWithMapping:(nonnull PGNetworkMapping *)mapping data:(nullable NSDictionary *)data error:(NSError **)error
+- (nullable id)objectWithMapping:(PGNetworkMapping *)mapping data:(nullable NSDictionary *)data error:(NSError **)error
 {
     return [self objectWithType:mapping.entityName identifier:data ? data[mapping.mappedUniqueIdentifierKey] : nil forKey:mapping.uniqueIdentifierKey error:error];
 }
 
-- (nullable id)objectWithMapping:(nonnull PGNetworkMapping *)mapping identifier:(nullable id)identifier error:(NSError **)error
+- (nullable id)objectWithMapping:(PGNetworkMapping *)mapping identifier:(nullable id)identifier error:(NSError **)error
 {
     return [self objectWithType:mapping.entityName identifier:identifier forKey:mapping.uniqueIdentifierKey error:error];
 }
 
-- (nullable NSArray *)objectsWithMapping:(nonnull PGNetworkMapping *)mapping error:(NSError **)error
+- (nullable NSArray *)objectsWithMapping:(PGNetworkMapping *)mapping error:(NSError **)error
 {
     return [self objectsWithType:mapping.entityName error:error];
 }
 
 @end
+
+NS_ASSUME_NONNULL_END

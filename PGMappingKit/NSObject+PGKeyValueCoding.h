@@ -23,9 +23,13 @@
 
 @import Foundation;
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface NSObject (PGKeyValueCoding)
 
-- (void)safelySetValue:(nullable id)value forKey:(nonnull NSString *)key;
-- (void)safelyAddValue:(nullable id)value forKey:(nonnull NSString *)key;
+- (void)safelySetValue:(nullable id)value forKey:(NSString *)key;
+- (void)safelyAddValue:(nullable id)value forKey:(NSString *)key;
 
 @end
+
+NS_ASSUME_NONNULL_END

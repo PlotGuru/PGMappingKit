@@ -21,37 +21,50 @@
 //  THE SOFTWARE.
 //
 
-@import Foundation;
-@import AFNetworking;
+@import CoreData;
 
-@class PGNetworkMapping;
+typedef NS_ENUM(NSInteger, PGSaveOption) {
+    PGSaveOptionUpdate,
+    PGSaveOptionReplace,
+    PGSaveOptionReplaceAll,
+};
+
+#import "PGNetworkHandler.h"
+#import "NSObject+PGPropertyName.h"
+#import "NSManagedObjectContext+PGObject.h"
+#import "NSManagedObjectContext+PGNetworkMapping.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PGNetworkHandler : AFHTTPSessionManager
+@interface PGNetworkHandler (PGCoreData)
 
-@property (nonatomic, getter=isCanceled) BOOL canceled;
+- (NSMutableDictionary *)dataFromObject:(nullable id)object mapping:(PGNetworkMapping *)mapping;
 
 - (nullable NSURLSessionDataTask *)PUT:(NSString *)URLString
-                                  from:(nullable NSDictionary *)data
+                                  from:(nullable id)object
+                               mapping:(PGNetworkMapping *)mapping
                                success:(nullable void (^)(NSURLSessionDataTask *task, id _Nullable responseObject))success
                                failure:(nullable void (^)(NSURLSessionDataTask * _Nullable task, NSError *error))failure
                                 finish:(nullable void (^)(NSURLSessionDataTask *task))finish;
 
 - (nullable NSURLSessionDataTask *)POST:(NSString *)URLString
-                                   from:(nullable NSDictionary *)data
+                                   from:(nullable id)object
+                                mapping:(PGNetworkMapping *)mapping
                                progress:(nullable void (^)(NSProgress *progress))progress
                                 success:(nullable void (^)(NSURLSessionDataTask *task, id _Nullable responseObject))success
                                 failure:(nullable void (^)(NSURLSessionDataTask * _Nullable task, NSError *error))failure
                                  finish:(nullable void (^)(NSURLSessionDataTask *task))finish;
 
 - (nullable NSURLSessionDataTask *)GET:(NSString *)URLString
-                                  from:(nullable NSDictionary *)data
+                                  from:(nullable id)object
+                                    to:(NSManagedObjectContext *)context
+                               mapping:(PGNetworkMapping *)mapping
+                                option:(PGSaveOption)option
                               progress:(nullable void (^)(NSProgress *progress))progress
-                               success:(nullable void (^)(NSURLSessionDataTask *task, id _Nullable responseObject))success
+                               success:(nullable void (^)(NSURLSessionDataTask *task, NSArray *results))success
                                failure:(nullable void (^)(NSURLSessionDataTask * _Nullable task, NSError *error))failure
                                 finish:(nullable void (^)(NSURLSessionDataTask *task))finish;
 
-NS_ASSUME_NONNULL_END
-
 @end
+
+NS_ASSUME_NONNULL_END

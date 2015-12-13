@@ -28,3 +28,5 @@ FOUNDATION_EXPORT double PGMappingKitVersionNumber;
 FOUNDATION_EXPORT const unsigned char PGMappingKitVersionString[];
 
 #import <PGMappingKit/PGNetworkHander.h>
+#import <PGMappingKit/PGNetworkHander+PGCoreData.h>
+#import <PGMappingKit/PGNetworkMapping.h>

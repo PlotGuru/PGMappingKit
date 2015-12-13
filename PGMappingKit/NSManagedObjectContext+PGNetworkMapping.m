@@ -27,7 +27,7 @@
 
 @implementation NSManagedObjectContext (PGNetworkMapping)
 
-- (id)save:(NSString *)type with:(NSDictionary *)data mapping:(PGNetworkMapping *)mapping error:(NSError *__autoreleasing *)error
+- (id)save:(NSString *)type with:(nullable NSDictionary *)data mapping:(PGNetworkMapping *)mapping error:(NSError **)error
 {
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:type];
     fetchRequest.predicate = [NSPredicate predicateWithFormat:@"%K == %@", mapping.uniqueIdentifierKey, data[mapping.mappedUniqueIdentifierKey]];
@@ -41,13 +41,8 @@
     return [self save:data to:object mapping:mapping error:error];
 }
 
-- (id)save:(NSDictionary *)data to:(id)object mapping:(PGNetworkMapping *)mapping error:(NSError *__autoreleasing *)error
+- (id)save:(nullable NSDictionary *)data to:(id)object mapping:(PGNetworkMapping *)mapping error:(NSError **)error
 {
-    if (!object) {
-        *error = [NSError errorWithDomain:[NSBundle mainBundle].bundleIdentifier code:1 userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"The operation couldn't be completed.", nil)}];
-        return nil;
-    }
-
     for (NSString *key in data.allKeys) {
         id mappedKey = [mapping mappingForKey:key];
         id value = data[key];

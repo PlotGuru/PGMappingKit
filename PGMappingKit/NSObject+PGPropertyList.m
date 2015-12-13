@@ -23,6 +23,8 @@
 
 #import "NSObject+PGPropertyList.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @implementation NSObject (PGPropertyList)
 
 + (nullable NSDictionary *)propertiesOfObject:(nullable id)object
@@ -44,7 +46,7 @@
     return [self propertiesForSubclass:classType onDictionary:[NSMutableDictionary dictionary]];
 }
 
-+ (nonnull NSMutableDictionary *)propertiesForHierarchyOfClass:(Class)classType onDictionary:(nonnull NSMutableDictionary *)properties
++ (NSMutableDictionary *)propertiesForHierarchyOfClass:(Class)classType onDictionary:(NSMutableDictionary *)properties
 {
     if (classType == NULL) {
         return nil;
@@ -59,7 +61,7 @@
     return [self propertiesForHierarchyOfClass:[classType superclass] onDictionary:properties];
 }
 
-+ (nonnull NSMutableDictionary *)propertiesForSubclass:(Class)classType onDictionary:(nonnull NSMutableDictionary *)properties
++ (NSMutableDictionary *)propertiesForSubclass:(Class)classType onDictionary:(NSMutableDictionary *)properties
 {
     unsigned int numberOfProperties = 0;
     objc_property_t *propertyList = class_copyPropertyList(classType, &numberOfProperties);
@@ -97,3 +99,5 @@ static const char *getPropertyType(objc_property_t property)
 }
 
 @end
+
+NS_ASSUME_NONNULL_END

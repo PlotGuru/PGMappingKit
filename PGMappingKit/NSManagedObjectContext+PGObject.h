@@ -26,14 +26,16 @@
 
 @class PGNetworkMapping;
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface NSManagedObjectContext (PGObject)
 
-NS_ASSUME_NONNULL_BEGIN
-- (nullable id)objectWithType:(nonnull NSString *)type identifier:(nullable id)identifier forKey:(nonnull NSString *)key error:(NSError **)error;
-- (nullable NSArray *)objectsWithType:(nonnull NSString *)type error:(NSError **)error;
-- (nullable id)objectWithMapping:(nonnull PGNetworkMapping *)mapping data:(nullable NSDictionary *)data error:(NSError **)error;
-- (nullable id)objectWithMapping:(nonnull PGNetworkMapping *)mapping identifier:(nullable id)identifier error:(NSError **)error;
-- (nullable NSArray *)objectsWithMapping:(nonnull PGNetworkMapping *)mapping error:(NSError **)error;
-NS_ASSUME_NONNULL_END
+- (nullable id)objectWithType:(NSString *)type identifier:(nullable id)identifier forKey:(NSString *)key error:(NSError **)error;
+- (nullable NSArray *)objectsWithType:(NSString *)type error:(NSError **)error;
+- (nullable id)objectWithMapping:(PGNetworkMapping *)mapping data:(nullable NSDictionary *)data error:(NSError **)error;
+- (nullable id)objectWithMapping:(PGNetworkMapping *)mapping identifier:(nullable id)identifier error:(NSError **)error;
+- (nullable NSArray *)objectsWithMapping:(PGNetworkMapping *)mapping error:(NSError **)error;
 
 @end
+
+NS_ASSUME_NONNULL_END

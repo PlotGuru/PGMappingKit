@@ -23,16 +23,18 @@
 
 #import "NSObject+PGKeyValueCoding.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @implementation NSObject (PGKeyValueCoding)
 
-- (void)safelySetValue:(nullable id)value forKey:(nonnull NSString *)key
+- (void)safelySetValue:(nullable id)value forKey:(NSString *)key
 {
     if ([self respondsToSelector:NSSelectorFromString(key)]) {
         [self setValue:value forKey:key];
     }
 }
 
-- (void)safelyAddValue:(nullable id)value forKey:(nonnull NSString *)key
+- (void)safelyAddValue:(nullable id)value forKey:(NSString *)key
 {
     if ([self respondsToSelector:NSSelectorFromString(key)]) {
         id oldValue = [self valueForKey:key];
@@ -47,3 +49,6 @@
 }
 
 @end
+
+NS_ASSUME_NONNULL_END
+

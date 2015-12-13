@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		D01424181C1A2E04008F1C91 /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D01424171C1A2E04008F1C91 /* AFNetworking.framework */; };
+		D02372AF1C1CE2C1007D541A /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D01424171C1A2E04008F1C91 /* AFNetworking.framework */; };
+		D02372B11C1CE3B0007D541A /* AFNetworking.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = D01424171C1A2E04008F1C91 /* AFNetworking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D02372B61C1CE439007D541A /* PGNetworkHandler+PGCoreData.h in Headers */ = {isa = PBXBuildFile; fileRef = D02372B41C1CE439007D541A /* PGNetworkHandler+PGCoreData.h */; };
+		D02372B71C1CE439007D541A /* PGNetworkHandler+PGCoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = D02372B51C1CE439007D541A /* PGNetworkHandler+PGCoreData.m */; };
 		D0667CD21BF4049500682856 /* PGNetworkMappingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D0667CD11BF4049500682856 /* PGNetworkMappingTests.m */; };
 		D06C355D1BF01C06003D9D72 /* PGMappingKit.h in Headers */ = {isa = PBXBuildFile; fileRef = D06C355C1BF01C06003D9D72 /* PGMappingKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D06C35641BF01C06003D9D72 /* PGMappingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D06C35591BF01C06003D9D72 /* PGMappingKit.framework */; };
@@ -39,8 +43,24 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		D02372B01C1CE39F007D541A /* Copy Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				D02372B11C1CE3B0007D541A /* AFNetworking.framework in Copy Frameworks */,
+			);
+			name = "Copy Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		D01424171C1A2E04008F1C91 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AFNetworking.framework; path = ../Carthage/Build/iOS/AFNetworking.framework; sourceTree = "<group>"; };
+		D02372B41C1CE439007D541A /* PGNetworkHandler+PGCoreData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PGNetworkHandler+PGCoreData.h"; sourceTree = "<group>"; };
+		D02372B51C1CE439007D541A /* PGNetworkHandler+PGCoreData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PGNetworkHandler+PGCoreData.m"; sourceTree = "<group>"; };
 		D0667CD11BF4049500682856 /* PGNetworkMappingTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PGNetworkMappingTests.m; sourceTree = "<group>"; };
 		D06C35591BF01C06003D9D72 /* PGMappingKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PGMappingKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D06C355C1BF01C06003D9D72 /* PGMappingKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PGMappingKit.h; sourceTree = "<group>"; };
@@ -78,6 +98,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D02372AF1C1CE2C1007D541A /* AFNetworking.framework in Frameworks */,
 				D06C35641BF01C06003D9D72 /* PGMappingKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -128,8 +149,8 @@
 		D06C35671BF01C06003D9D72 /* PGMappingKitTests */ = {
 			isa = PBXGroup;
 			children = (
-				D0667CD11BF4049500682856 /* PGNetworkMappingTests.m */,
 				D06C356A1BF01C06003D9D72 /* Info.plist */,
+				D0667CD11BF4049500682856 /* PGNetworkMappingTests.m */,
 			);
 			path = PGMappingKitTests;
 			sourceTree = "<group>";
@@ -167,6 +188,8 @@
 			children = (
 				D06C35731BF01E6C003D9D72 /* PGNetworkHandler.h */,
 				D06C35741BF01E6C003D9D72 /* PGNetworkHandler.m */,
+				D02372B41C1CE439007D541A /* PGNetworkHandler+PGCoreData.h */,
+				D02372B51C1CE439007D541A /* PGNetworkHandler+PGCoreData.m */,
 			);
 			name = PGNetworkHandler;
 			sourceTree = "<group>";
@@ -181,6 +204,7 @@
 				D06C357F1BF01E6C003D9D72 /* NSManagedObjectContext+PGNetworkMapping.h in Headers */,
 				D06C35811BF01E6C003D9D72 /* PGNetworkMapping.h in Headers */,
 				D06C35831BF01E6C003D9D72 /* NSObject+PGKeyValueCoding.h in Headers */,
+				D02372B61C1CE439007D541A /* PGNetworkHandler+PGCoreData.h in Headers */,
 				D06C35891BF01E8B003D9D72 /* NSMutableDictionary+PGSafeCheck.h in Headers */,
 				D0C8CB4D1C01293400A35C46 /* NSManagedObjectContext+PGObject.h in Headers */,
 				D06C355D1BF01C06003D9D72 /* PGMappingKit.h in Headers */,
@@ -218,6 +242,7 @@
 				D06C355F1BF01C06003D9D72 /* Sources */,
 				D06C35601BF01C06003D9D72 /* Frameworks */,
 				D06C35611BF01C06003D9D72 /* Resources */,
+				D02372B01C1CE39F007D541A /* Copy Frameworks */,
 			);
 			buildRules = (
 			);
@@ -292,6 +317,7 @@
 				D06C35801BF01E6C003D9D72 /* NSManagedObjectContext+PGNetworkMapping.m in Sources */,
 				D06C35821BF01E6C003D9D72 /* PGNetworkMapping.m in Sources */,
 				D06C35841BF01E6C003D9D72 /* NSObject+PGKeyValueCoding.m in Sources */,
+				D02372B71C1CE439007D541A /* PGNetworkHandler+PGCoreData.m in Sources */,
 				D0C8CB4E1C01293400A35C46 /* NSManagedObjectContext+PGObject.m in Sources */,
 				D06C357E1BF01E6C003D9D72 /* PGNetworkHandler.m in Sources */,
 				D0C8CB4A1C0128F800A35C46 /* NSObject+PGPropertyName.m in Sources */,
@@ -408,6 +434,7 @@
 		D06C356E1BF01C06003D9D72 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = NO;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -428,6 +455,7 @@
 		D06C356F1BF01C06003D9D72 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = NO;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -448,6 +476,10 @@
 		D06C35711BF01C06003D9D72 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = PGMappingKitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.plotguru.PGMappingKitTests;
@@ -458,6 +490,10 @@
 		D06C35721BF01C06003D9D72 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = PGMappingKitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.plotguru.PGMappingKitTests;

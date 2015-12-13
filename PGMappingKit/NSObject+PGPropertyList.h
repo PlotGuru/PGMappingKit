@@ -24,6 +24,8 @@
 @import Foundation;
 @import ObjectiveC.runtime;
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface NSObject (PGPropertyList)
 
 + (nullable NSDictionary *)propertiesOfObject:(nullable id)object;
@@ -31,3 +33,5 @@
 + (nullable NSDictionary *)propertiesOfSubclass:(nullable Class)classType;
 
 @end
+
+NS_ASSUME_NONNULL_END

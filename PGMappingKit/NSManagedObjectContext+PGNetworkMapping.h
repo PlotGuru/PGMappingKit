@@ -26,9 +26,13 @@
 
 @class PGNetworkMapping;
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface NSManagedObjectContext (PGNetworkMapping)
 
-- (id)save:(NSString *)type with:(NSDictionary *)data mapping:(PGNetworkMapping *)mapping error:(NSError *__autoreleasing *)error;
-- (id)save:(NSDictionary *)data to:(id)object mapping:(PGNetworkMapping *)mapping error:(NSError *__autoreleasing *)error;
+- (id)save:(NSString *)type with:(nullable NSDictionary *)data mapping:(PGNetworkMapping *)mapping error:(NSError **)error;
+- (id)save:(nullable NSDictionary *)data to:(id)object mapping:(PGNetworkMapping *)mapping error:(NSError **)error;
 
 @end
+
+NS_ASSUME_NONNULL_END

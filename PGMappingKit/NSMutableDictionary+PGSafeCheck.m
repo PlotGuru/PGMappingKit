@@ -23,9 +23,11 @@
 
 #import "NSMutableDictionary+PGSafeCheck.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @implementation NSMutableDictionary (PGSafeCheck)
 
-- (void)setObjectIfExists:(nullable id)anObject forKey:(nonnull id<NSCopying>)aKey
+- (void)setObjectIfExists:(nullable id)anObject forKey:(id<NSCopying>)aKey
 {
     if (anObject) {
         self[aKey] = anObject;
@@ -35,3 +37,5 @@
 }
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -23,12 +23,16 @@
 
 @import Foundation;
 
-#define PGDataType(Class) NSStringFromClass([Class class])
+#define PGEntity(Class) NSStringFromClass([Class class])
 
-#define PGDataKey(Class, PropertyName) @(((void)(NO && ((void)[Class nilObject].PropertyName, NO)), # PropertyName))
+#define PGAttribute(Class, PropertyName) @(((void)(NO && ((void)[Class nilObject].PropertyName, NO)), # PropertyName))
+
+NS_ASSUME_NONNULL_BEGIN
 
 @interface NSObject (PGPropertyName)
 
 + (nullable instancetype)nilObject;
 
 @end
+
+NS_ASSUME_NONNULL_END
