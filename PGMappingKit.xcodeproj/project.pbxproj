@@ -10,16 +10,16 @@
 		D01424181C1A2E04008F1C91 /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D01424171C1A2E04008F1C91 /* AFNetworking.framework */; };
 		D02372AF1C1CE2C1007D541A /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D01424171C1A2E04008F1C91 /* AFNetworking.framework */; };
 		D02372B11C1CE3B0007D541A /* AFNetworking.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = D01424171C1A2E04008F1C91 /* AFNetworking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		D02372B61C1CE439007D541A /* PGNetworkHandler+PGCoreData.h in Headers */ = {isa = PBXBuildFile; fileRef = D02372B41C1CE439007D541A /* PGNetworkHandler+PGCoreData.h */; };
+		D02372B61C1CE439007D541A /* PGNetworkHandler+PGCoreData.h in Headers */ = {isa = PBXBuildFile; fileRef = D02372B41C1CE439007D541A /* PGNetworkHandler+PGCoreData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D02372B71C1CE439007D541A /* PGNetworkHandler+PGCoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = D02372B51C1CE439007D541A /* PGNetworkHandler+PGCoreData.m */; };
 		D0667CD21BF4049500682856 /* PGNetworkMappingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D0667CD11BF4049500682856 /* PGNetworkMappingTests.m */; };
 		D06C355D1BF01C06003D9D72 /* PGMappingKit.h in Headers */ = {isa = PBXBuildFile; fileRef = D06C355C1BF01C06003D9D72 /* PGMappingKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D06C35641BF01C06003D9D72 /* PGMappingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D06C35591BF01C06003D9D72 /* PGMappingKit.framework */; };
-		D06C357D1BF01E6C003D9D72 /* PGNetworkHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = D06C35731BF01E6C003D9D72 /* PGNetworkHandler.h */; };
+		D06C357D1BF01E6C003D9D72 /* PGNetworkHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = D06C35731BF01E6C003D9D72 /* PGNetworkHandler.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D06C357E1BF01E6C003D9D72 /* PGNetworkHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = D06C35741BF01E6C003D9D72 /* PGNetworkHandler.m */; };
-		D06C357F1BF01E6C003D9D72 /* NSManagedObjectContext+PGMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = D06C35751BF01E6C003D9D72 /* NSManagedObjectContext+PGMapping.h */; };
+		D06C357F1BF01E6C003D9D72 /* NSManagedObjectContext+PGMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = D06C35751BF01E6C003D9D72 /* NSManagedObjectContext+PGMapping.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D06C35801BF01E6C003D9D72 /* NSManagedObjectContext+PGMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = D06C35761BF01E6C003D9D72 /* NSManagedObjectContext+PGMapping.m */; };
-		D06C35811BF01E6C003D9D72 /* PGMappingDescription.h in Headers */ = {isa = PBXBuildFile; fileRef = D06C35771BF01E6C003D9D72 /* PGMappingDescription.h */; };
+		D06C35811BF01E6C003D9D72 /* PGMappingDescription.h in Headers */ = {isa = PBXBuildFile; fileRef = D06C35771BF01E6C003D9D72 /* PGMappingDescription.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D06C35821BF01E6C003D9D72 /* PGMappingDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = D06C35781BF01E6C003D9D72 /* PGMappingDescription.m */; };
 		D06C35831BF01E6C003D9D72 /* NSObject+PGKeyValueCoding.h in Headers */ = {isa = PBXBuildFile; fileRef = D06C35791BF01E6C003D9D72 /* NSObject+PGKeyValueCoding.h */; };
 		D06C35841BF01E6C003D9D72 /* NSObject+PGKeyValueCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = D06C357A1BF01E6C003D9D72 /* NSObject+PGKeyValueCoding.m */; };
@@ -27,9 +27,9 @@
 		D06C35861BF01E6C003D9D72 /* NSObject+PGPropertyList.m in Sources */ = {isa = PBXBuildFile; fileRef = D06C357C1BF01E6C003D9D72 /* NSObject+PGPropertyList.m */; };
 		D06C35891BF01E8B003D9D72 /* NSMutableDictionary+PGSafeCheck.h in Headers */ = {isa = PBXBuildFile; fileRef = D06C35871BF01E8B003D9D72 /* NSMutableDictionary+PGSafeCheck.h */; };
 		D06C358A1BF01E8B003D9D72 /* NSMutableDictionary+PGSafeCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = D06C35881BF01E8B003D9D72 /* NSMutableDictionary+PGSafeCheck.m */; };
-		D0C8CB491C0128F800A35C46 /* NSObject+PGNilObject.h in Headers */ = {isa = PBXBuildFile; fileRef = D0C8CB471C0128F800A35C46 /* NSObject+PGNilObject.h */; };
+		D0C8CB491C0128F800A35C46 /* NSObject+PGNilObject.h in Headers */ = {isa = PBXBuildFile; fileRef = D0C8CB471C0128F800A35C46 /* NSObject+PGNilObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D0C8CB4A1C0128F800A35C46 /* NSObject+PGNilObject.m in Sources */ = {isa = PBXBuildFile; fileRef = D0C8CB481C0128F800A35C46 /* NSObject+PGNilObject.m */; };
-		D0C8CB4D1C01293400A35C46 /* NSManagedObjectContext+PGObject.h in Headers */ = {isa = PBXBuildFile; fileRef = D0C8CB4B1C01293400A35C46 /* NSManagedObjectContext+PGObject.h */; };
+		D0C8CB4D1C01293400A35C46 /* NSManagedObjectContext+PGObject.h in Headers */ = {isa = PBXBuildFile; fileRef = D0C8CB4B1C01293400A35C46 /* NSManagedObjectContext+PGObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D0C8CB4E1C01293400A35C46 /* NSManagedObjectContext+PGObject.m in Sources */ = {isa = PBXBuildFile; fileRef = D0C8CB4C1C01293400A35C46 /* NSManagedObjectContext+PGObject.m */; };
 /* End PBXBuildFile section */
 
@@ -201,16 +201,16 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D06C357D1BF01E6C003D9D72 /* PGNetworkHandler.h in Headers */,
+				D02372B61C1CE439007D541A /* PGNetworkHandler+PGCoreData.h in Headers */,
 				D06C357F1BF01E6C003D9D72 /* NSManagedObjectContext+PGMapping.h in Headers */,
 				D06C35811BF01E6C003D9D72 /* PGMappingDescription.h in Headers */,
-				D06C35831BF01E6C003D9D72 /* NSObject+PGKeyValueCoding.h in Headers */,
-				D02372B61C1CE439007D541A /* PGNetworkHandler+PGCoreData.h in Headers */,
-				D06C35891BF01E8B003D9D72 /* NSMutableDictionary+PGSafeCheck.h in Headers */,
-				D0C8CB4D1C01293400A35C46 /* NSManagedObjectContext+PGObject.h in Headers */,
 				D06C355D1BF01C06003D9D72 /* PGMappingKit.h in Headers */,
-				D06C35851BF01E6C003D9D72 /* NSObject+PGPropertyList.h in Headers */,
-				D06C357D1BF01E6C003D9D72 /* PGNetworkHandler.h in Headers */,
+				D0C8CB4D1C01293400A35C46 /* NSManagedObjectContext+PGObject.h in Headers */,
+				D06C35831BF01E6C003D9D72 /* NSObject+PGKeyValueCoding.h in Headers */,
 				D0C8CB491C0128F800A35C46 /* NSObject+PGNilObject.h in Headers */,
+				D06C35891BF01E8B003D9D72 /* NSMutableDictionary+PGSafeCheck.h in Headers */,
+				D06C35851BF01E6C003D9D72 /* NSObject+PGPropertyList.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
