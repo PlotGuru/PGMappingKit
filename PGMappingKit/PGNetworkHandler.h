@@ -35,21 +35,21 @@ NS_ASSUME_NONNULL_BEGIN
                                   from:(nullable NSDictionary *)data
                                success:(nullable void (^)(NSURLSessionDataTask *task, id _Nullable responseObject))success
                                failure:(nullable void (^)(NSURLSessionDataTask * _Nullable task, NSError *error))failure
-                                finish:(nullable void (^)(NSURLSessionDataTask *task))finish;
+                                finish:(nullable void (^)(NSURLSessionDataTask * _Nullable task))finish;
 
 - (nullable NSURLSessionDataTask *)POST:(NSString *)URLString
                                    from:(nullable NSDictionary *)data
                                progress:(nullable void (^)(NSProgress *progress))progress
                                 success:(nullable void (^)(NSURLSessionDataTask *task, id _Nullable responseObject))success
                                 failure:(nullable void (^)(NSURLSessionDataTask * _Nullable task, NSError *error))failure
-                                 finish:(nullable void (^)(NSURLSessionDataTask *task))finish;
+                                 finish:(nullable void (^)(NSURLSessionDataTask * _Nullable task))finish;
 
 - (nullable NSURLSessionDataTask *)GET:(NSString *)URLString
                                   from:(nullable NSDictionary *)data
                               progress:(nullable void (^)(NSProgress *progress))progress
                                success:(nullable void (^)(NSURLSessionDataTask *task, id _Nullable responseObject))success
                                failure:(nullable void (^)(NSURLSessionDataTask * _Nullable task, NSError *error))failure
-                                finish:(nullable void (^)(NSURLSessionDataTask *task))finish;
+                                finish:(nullable void (^)(NSURLSessionDataTask * _Nullable task))finish;
 
 NS_ASSUME_NONNULL_END
 

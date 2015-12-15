@@ -42,7 +42,7 @@ NS_ASSUME_NONNULL_BEGIN
                                mapping:(PGMappingDescription *)mapping
                                success:(nullable void (^)(NSURLSessionDataTask *task, id _Nullable responseObject))success
                                failure:(nullable void (^)(NSURLSessionDataTask * _Nullable task, NSError *error))failure
-                                finish:(nullable void (^)(NSURLSessionDataTask *task))finish;
+                                finish:(nullable void (^)(NSURLSessionDataTask * _Nullable task))finish;
 
 - (nullable NSURLSessionDataTask *)POST:(NSString *)URLString
                                    from:(nullable id)object
@@ -50,7 +50,7 @@ NS_ASSUME_NONNULL_BEGIN
                                progress:(nullable void (^)(NSProgress *progress))progress
                                 success:(nullable void (^)(NSURLSessionDataTask *task, id _Nullable responseObject))success
                                 failure:(nullable void (^)(NSURLSessionDataTask * _Nullable task, NSError *error))failure
-                                 finish:(nullable void (^)(NSURLSessionDataTask *task))finish;
+                                 finish:(nullable void (^)(NSURLSessionDataTask * _Nullable task))finish;
 
 - (nullable NSURLSessionDataTask *)GET:(NSString *)URLString
                                   from:(nullable id)object
@@ -60,7 +60,7 @@ NS_ASSUME_NONNULL_BEGIN
                               progress:(nullable void (^)(NSProgress *progress))progress
                                success:(nullable void (^)(NSURLSessionDataTask *task, NSArray *results))success
                                failure:(nullable void (^)(NSURLSessionDataTask * _Nullable task, NSError *error))failure
-                                finish:(nullable void (^)(NSURLSessionDataTask *task))finish;
+                                finish:(nullable void (^)(NSURLSessionDataTask * _Nullable task))finish;
 
 @end
 

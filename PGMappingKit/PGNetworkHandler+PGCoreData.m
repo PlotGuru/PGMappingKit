@@ -48,7 +48,7 @@
                                mapping:(PGMappingDescription *)mapping
                                success:(nullable void (^)(NSURLSessionDataTask *task, id _Nullable responseObject))success
                                failure:(nullable void (^)(NSURLSessionDataTask * _Nullable task, NSError *error))failure
-                                finish:(nullable void (^)(NSURLSessionDataTask *task))finish
+                                finish:(nullable void (^)(NSURLSessionDataTask * _Nullable task))finish
 {
     return [self PUT:URLString from:[self dataFromObject:object mapping:mapping] success:success failure:failure finish:finish];
 }
@@ -59,7 +59,7 @@
                                progress:(nullable void (^)(NSProgress *progress))progress
                                 success:(nullable void (^)(NSURLSessionDataTask *task, id _Nullable responseObject))success
                                 failure:(nullable void (^)(NSURLSessionDataTask * _Nullable task, NSError *error))failure
-                                 finish:(nullable void (^)(NSURLSessionDataTask *task))finish
+                                 finish:(nullable void (^)(NSURLSessionDataTask *_Nullable task))finish
 {
     return [self POST:URLString from:[self dataFromObject:object mapping:mapping] progress:progress success:success failure:failure finish:finish];
 }
@@ -72,7 +72,7 @@
                               progress:(nullable void (^)(NSProgress *progress))progress
                                success:(nullable void (^)(NSURLSessionDataTask *task, NSArray *results))success
                                failure:(nullable void (^)(NSURLSessionDataTask * _Nullable task, NSError *error))failure
-                                finish:(nullable void (^)(NSURLSessionDataTask *task))finish
+                                finish:(nullable void (^)(NSURLSessionDataTask * _Nullable task))finish
 {
     return [self GET:URLString from:[self dataFromObject:object mapping:mapping] progress:progress success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSError *error = nil;

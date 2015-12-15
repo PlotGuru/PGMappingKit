@@ -44,7 +44,7 @@ NS_ASSUME_NONNULL_BEGIN
                                   from:(nullable NSDictionary *)data
                                success:(nullable void (^)(NSURLSessionDataTask *task, id _Nullable responseObject))success
                                failure:(nullable void (^)(NSURLSessionDataTask * _Nullable task, NSError *error))failure
-                                finish:(nullable void (^)(NSURLSessionDataTask *task))finish
+                                finish:(nullable void (^)(NSURLSessionDataTask * _Nullable task))finish
 {
     return [self PUT:URLString parameters:data success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if (self.isCanceled) {
@@ -84,7 +84,7 @@ NS_ASSUME_NONNULL_BEGIN
                                progress:(nullable void (^)(NSProgress *progress))progress
                                 success:(nullable void (^)(NSURLSessionDataTask *task, id _Nullable responseObject))success
                                 failure:(nullable void (^)(NSURLSessionDataTask * _Nullable task, NSError *error))failure
-                                 finish:(nullable void (^)(NSURLSessionDataTask *task))finish
+                                 finish:(nullable void (^)(NSURLSessionDataTask * _Nullable task))finish
 {
     return [self POST:URLString parameters:data progress:progress success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if (self.isCanceled) {
@@ -124,7 +124,7 @@ NS_ASSUME_NONNULL_BEGIN
                               progress:(nullable void (^)(NSProgress *progress))progress
                                success:(nullable void (^)(NSURLSessionDataTask *task, id _Nullable responseObject))success
                                failure:(nullable void (^)(NSURLSessionDataTask * _Nullable task, NSError *error))failure
-                                finish:(nullable void (^)(NSURLSessionDataTask *task))finish
+                                finish:(nullable void (^)(NSURLSessionDataTask * _Nullable task))finish
 {
     return [self GET:URLString parameters:data progress:progress success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if (self.isCanceled) {
