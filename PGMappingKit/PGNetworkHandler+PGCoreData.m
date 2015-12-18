@@ -113,10 +113,6 @@
                 failure(task, error);
             }
         }
-        
-        if (finish) {
-            finish(task);
-        }
     } failure:failure finish:finish];
 }
 
