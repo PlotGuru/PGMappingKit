@@ -26,6 +26,10 @@
 
 @class PGNetworkMapping;
 
+/*
+ * NSManagedObjectConext maps the data from string formta and saves the objects 
+ */
+
 @interface NSManagedObjectContext (PGNetworkMapping)
 
 - (id)save:(NSString *)type with:(NSDictionary *)data mapping:(PGNetworkMapping *)mapping error:(NSError *__autoreleasing *)error;
