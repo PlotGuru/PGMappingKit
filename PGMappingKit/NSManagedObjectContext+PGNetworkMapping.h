@@ -27,12 +27,19 @@
 @class PGNetworkMapping;
 
 /*
- * NSManagedObjectConext maps the data from string formta and saves the objects 
+ * NSManagedObjectConext maps the data from string format and saves the objects
  */
 
 @interface NSManagedObjectContext (PGNetworkMapping)
 
+/**
+ * This save function maps the string and the dictionary with 'PGNetworkMapping' dictionary and handles the error if nil is passed in.
+ */
 - (id)save:(NSString *)type with:(NSDictionary *)data mapping:(PGNetworkMapping *)mapping error:(NSError *__autoreleasing *)error;
+
+/**
+ * This save function only gets the data from the dictionary into 'PGNetworkingMapping' object and returns the object 
+ */
 - (id)save:(NSDictionary *)data to:(id)object mapping:(PGNetworkMapping *)mapping error:(NSError *__autoreleasing *)error;
 
 @end
