@@ -43,29 +43,8 @@
     return data;
 }
 
-- (nullable NSURLSessionDataTask *)PUT:(NSString *)URLString
-                                  from:(nullable id)object
-                               mapping:(PGMappingDescription *)mapping
-                               success:(nullable void (^)(NSURLSessionDataTask *task, id _Nullable responseObject))success
-                               failure:(nullable void (^)(NSURLSessionDataTask * _Nullable task, NSError *error))failure
-                                finish:(nullable void (^)(NSURLSessionDataTask * _Nullable task))finish
-{
-    return [self PUT:URLString from:[self dataFromObject:object mapping:mapping] success:success failure:failure finish:finish];
-}
-
-- (nullable NSURLSessionDataTask *)POST:(NSString *)URLString
-                                   from:(nullable id)object
-                                mapping:(PGMappingDescription *)mapping
-                               progress:(nullable void (^)(NSProgress *progress))progress
-                                success:(nullable void (^)(NSURLSessionDataTask *task, id _Nullable responseObject))success
-                                failure:(nullable void (^)(NSURLSessionDataTask * _Nullable task, NSError *error))failure
-                                 finish:(nullable void (^)(NSURLSessionDataTask *_Nullable task))finish
-{
-    return [self POST:URLString from:[self dataFromObject:object mapping:mapping] progress:progress success:success failure:failure finish:finish];
-}
-
 - (nullable NSURLSessionDataTask *)GET:(NSString *)URLString
-                                  from:(nullable id)object
+                                  from:(nullable NSDictionary *)data
                                     to:(NSManagedObjectContext *)context
                                mapping:(PGMappingDescription *)mapping
                                 option:(PGSaveOption)option
@@ -74,7 +53,7 @@
                                failure:(nullable void (^)(NSURLSessionDataTask * _Nullable task, NSError *error))failure
                                 finish:(nullable void (^)(NSURLSessionDataTask * _Nullable task))finish
 {
-    return [self GET:URLString from:[self dataFromObject:object mapping:mapping] progress:progress success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    return [self GET:URLString from:data progress:progress success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSError *error = nil;
         
         if (option == PGSaveOptionReplaceAll) {

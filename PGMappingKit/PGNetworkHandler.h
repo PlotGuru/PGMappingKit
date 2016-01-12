@@ -51,6 +51,12 @@ NS_ASSUME_NONNULL_BEGIN
                                failure:(nullable void (^)(NSURLSessionDataTask * _Nullable task, NSError *error))failure
                                 finish:(nullable void (^)(NSURLSessionDataTask * _Nullable task))finish;
 
+- (nullable NSURLSessionDataTask *)DELETE:(NSString *)URLString
+                                     from:(nullable NSDictionary *)data
+                                  success:(nullable void (^)(NSURLSessionDataTask *task, id _Nullable responseObject))success
+                                  failure:(nullable void (^)(NSURLSessionDataTask * _Nullable task, NSError *error))failure
+                                   finish:(nullable void (^)(NSURLSessionDataTask * _Nullable task))finish;
+
 @end
 
 NS_ASSUME_NONNULL_END

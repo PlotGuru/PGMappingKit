@@ -157,6 +157,45 @@ NS_ASSUME_NONNULL_BEGIN
     }];
 }
 
+#pragma mark - DELETE
+
+- (nullable NSURLSessionDataTask *)DELETE:(NSString *)URLString
+                                     from:(nullable NSDictionary *)data
+                                  success:(nullable void (^)(NSURLSessionDataTask *task, id _Nullable responseObject))success
+                                  failure:(nullable void (^)(NSURLSessionDataTask * _Nullable task, NSError *error))failure
+                                   finish:(nullable void (^)(NSURLSessionDataTask * _Nullable task))finish
+{
+    return [self DELETE:URLString parameters:data success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        if (self.isCanceled) {
+            return;
+        }
+        
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            if (success) {
+                success(task, responseObject);
+            }
+            
+            if (finish) {
+                finish(task);
+            }
+        }];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        if (self.isCanceled) {
+            return;
+        }
+        
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            if (failure) {
+                failure(task, error);
+            }
+            
+            if (finish) {
+                finish(task);
+            }
+        }];
+    }];
+}
+
 @end
 
 NS_ASSUME_NONNULL_END
