@@ -28,9 +28,75 @@
 #import "NSMutableDictionary+PGSafeCheck.h"
 #import "NSObject+PGPropertyList.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
+@interface PGNetworkHandler (PGCoreDataInternal)
+
+- (void)succeedWithTask:(NSURLSessionDataTask *)task
+         responseObject:(nullable id)responseObject
+                context:(NSManagedObjectContext *)context
+                mapping:(PGMappingDescription *)mapping
+                 option:(PGSaveOption)option
+                success:(nullable void (^)(NSURLSessionDataTask *task, id _Nullable responseObject))success
+                failure:(nullable void (^)(NSURLSessionDataTask * _Nullable task, NSError *error))failure;
+
+@end
+
+@implementation PGNetworkHandler (PGCoreDataInternal)
+
+- (void)succeedWithTask:(NSURLSessionDataTask *)task
+         responseObject:(nullable id)responseObject
+                context:(NSManagedObjectContext *)context
+                mapping:(PGMappingDescription *)mapping
+                 option:(PGSaveOption)option
+                success:(nullable void (^)(NSURLSessionDataTask *task, id _Nullable responseObject))success
+                failure:(nullable void (^)(NSURLSessionDataTask * _Nullable task, NSError *error))failure
+{
+    NSError *error = nil;
+    
+    if (option == PGSaveOptionReplaceAll) {
+        NSArray *oldObjects = [context objectsWithMapping:mapping error:&error];
+        
+        for (NSManagedObject *oldObject in oldObjects) {
+            [context deleteObject:oldObject];
+        }
+    }
+    
+    [context save:&error];
+    
+    NSMutableArray *results = [NSMutableArray array];
+    
+    NSArray *responseArray = [responseObject isKindOfClass:[NSArray class]] ? responseObject : (responseObject ? @[responseObject] : nil);
+    for (id responseArrayItem in responseArray) {
+        if ([responseArrayItem isKindOfClass:[NSDictionary class]]) {
+            if (option == PGSaveOptionReplace) {
+                NSManagedObject *object = [context objectWithMapping:mapping data:responseArrayItem error:&error];
+                if (object) {
+                    [context deleteObject:object];
+                }
+            }
+            [results addObject:[context save:mapping.entityName with:responseArrayItem description:mapping error:&error]];
+        }
+    }
+    
+    [context save:&error];
+    
+    if (!error) {
+        if (success) {
+            success(task, results.copy);
+        }
+    } else {
+        if (failure) {
+            failure(task, error);
+        }
+    }
+}
+
+@end
+
 @implementation PGNetworkHandler (PGCoreData)
 
-- (NSMutableDictionary *)dataFromObject:(id)object mapping:(PGMappingDescription *)mapping
+- (NSMutableDictionary *)dataFromObject:(nullable id)object mapping:(PGMappingDescription *)mapping;
 {
     NSMutableDictionary *data = [NSMutableDictionary dictionary];
     
@@ -41,6 +107,35 @@
     }
     
     return data;
+}
+
+- (nullable NSURLSessionDataTask *)PUT:(NSString *)URLString
+                                  from:(nullable NSDictionary *)data
+                                    to:(NSManagedObjectContext *)context
+                               mapping:(PGMappingDescription *)mapping
+                                option:(PGSaveOption)option
+                               success:(nullable void (^)(NSURLSessionDataTask *task, NSArray *results))success
+                               failure:(nullable void (^)(NSURLSessionDataTask * _Nullable task, NSError *error))failure
+                                finish:(nullable void (^)(NSURLSessionDataTask * _Nullable task))finish
+{
+    return [self PUT:URLString from:data success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [self succeedWithTask:task responseObject:responseObject context:context mapping:mapping option:option success:success failure:failure];
+    } failure:failure finish:finish];
+}
+
+- (nullable NSURLSessionDataTask *)POST:(NSString *)URLString
+                                  from:(nullable NSDictionary *)data
+                                    to:(NSManagedObjectContext *)context
+                               mapping:(PGMappingDescription *)mapping
+                                option:(PGSaveOption)option
+                              progress:(nullable void (^)(NSProgress *progress))progress
+                               success:(nullable void (^)(NSURLSessionDataTask *task, NSArray *results))success
+                               failure:(nullable void (^)(NSURLSessionDataTask * _Nullable task, NSError *error))failure
+                                finish:(nullable void (^)(NSURLSessionDataTask * _Nullable task))finish
+{
+    return [self POST:URLString from:data progress:progress success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [self succeedWithTask:task responseObject:responseObject context:context mapping:mapping option:option success:success failure:failure];
+    } failure:failure finish:finish];
 }
 
 - (nullable NSURLSessionDataTask *)GET:(NSString *)URLString
@@ -54,45 +149,24 @@
                                 finish:(nullable void (^)(NSURLSessionDataTask * _Nullable task))finish
 {
     return [self GET:URLString from:data progress:progress success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSError *error = nil;
-        
-        if (option == PGSaveOptionReplaceAll) {
-            NSArray *oldObjects = [context objectsWithMapping:mapping error:&error];
+        [self succeedWithTask:task responseObject:responseObject context:context mapping:mapping option:option success:success failure:failure];
+    } failure:failure finish:finish];
+}
 
-            for (NSManagedObject *oldObject in oldObjects) {
-                [context deleteObject:oldObject];
-            }
-        }
-        
-        [context save:&error];
-
-        NSMutableArray *results = [NSMutableArray array];
-
-        NSArray *responseArray = [responseObject isKindOfClass:[NSArray class]] ? responseObject : (responseObject ? @[responseObject] : nil);
-        for (id responseArrayItem in responseArray) {
-            if ([responseArrayItem isKindOfClass:[NSDictionary class]]) {
-                if (option == PGSaveOptionReplace) {
-                    NSManagedObject *object = [context objectWithMapping:mapping data:responseArrayItem error:&error];
-                    if (object) {
-                        [context deleteObject:object];
-                    }
-                }
-                [results addObject:[context save:mapping.entityName with:responseArrayItem description:mapping error:&error]];
-            }
-        }
-        
-        [context save:&error];
-        
-        if (!error) {
-            if (success) {
-                success(task, results.copy);
-            }
-        } else {
-            if (failure) {
-                failure(task, error);
-            }
-        }
+- (nullable NSURLSessionDataTask *)DELETE:(NSString *)URLString
+                                     from:(nullable NSDictionary *)data
+                                       to:(NSManagedObjectContext *)context
+                                  mapping:(PGMappingDescription *)mapping
+                                   option:(PGSaveOption)option
+                                  success:(nullable void (^)(NSURLSessionDataTask *task, NSArray *results))success
+                                  failure:(nullable void (^)(NSURLSessionDataTask * _Nullable task, NSError *error))failure
+                                   finish:(nullable void (^)(NSURLSessionDataTask * _Nullable task))finish
+{
+    return [self DELETE:URLString from:data success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [self succeedWithTask:task responseObject:responseObject context:context mapping:mapping option:option success:success failure:failure];
     } failure:failure finish:finish];
 }
 
 @end
+
+NS_ASSUME_NONNULL_END
