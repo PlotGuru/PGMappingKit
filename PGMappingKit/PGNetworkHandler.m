@@ -26,6 +26,20 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@interface PGNetworkHandler ()
+
+- (void)succeedWithTask:(NSURLSessionDataTask *)task
+         responseObject:(nullable id)responseObject
+                success:(nullable void (^)(NSURLSessionDataTask *task, id _Nullable responseObject))success
+                 finish:(nullable void (^)(NSURLSessionDataTask * _Nullable task))finish;
+
+- (void)failedWithTask:(nullable NSURLSessionDataTask *)task
+                 error:(NSError *)error
+               failure:(nullable void (^)(NSURLSessionDataTask * _Nullable task, NSError *error))failure
+                finish:(nullable void (^)(NSURLSessionDataTask * _Nullable task))finish;
+
+@end
+
 @implementation PGNetworkHandler
 
 - (instancetype)initWithBaseURL:(nullable NSURL *)url sessionConfiguration:(nullable NSURLSessionConfiguration *)configuration
@@ -38,6 +52,46 @@ NS_ASSUME_NONNULL_BEGIN
     return self;
 }
 
+- (void)succeedWithTask:(NSURLSessionDataTask *)task
+         responseObject:(nullable id)responseObject
+                success:(nullable void (^)(NSURLSessionDataTask *task, id _Nullable responseObject))success
+                 finish:(nullable void (^)(NSURLSessionDataTask * _Nullable task))finish
+{
+    if (self.isCanceled) {
+        return;
+    }
+    
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        if (success) {
+            success(task, responseObject);
+        }
+        
+        if (finish) {
+            finish(task);
+        }
+    }];
+}
+
+- (void)failedWithTask:(nullable NSURLSessionDataTask *)task
+                 error:(NSError *)error
+               failure:(nullable void (^)(NSURLSessionDataTask * _Nullable task, NSError *error))failure
+                finish:(nullable void (^)(NSURLSessionDataTask * _Nullable task))finish
+{
+    if (self.isCanceled) {
+        return;
+    }
+    
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        if (failure) {
+            failure(task, error);
+        }
+        
+        if (finish) {
+            finish(task);
+        }
+    }];
+}
+
 #pragma mark - PUT
 
 - (nullable NSURLSessionDataTask *)PUT:(NSString *)URLString
@@ -47,33 +101,9 @@ NS_ASSUME_NONNULL_BEGIN
                                 finish:(nullable void (^)(NSURLSessionDataTask * _Nullable task))finish
 {
     return [self PUT:URLString parameters:data success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        if (self.isCanceled) {
-            return;
-        }
-        
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            if (success) {
-                success(task, responseObject);
-            }
-            
-            if (finish) {
-                finish(task);
-            }
-        }];
+        [self succeedWithTask:task responseObject:responseObject success:success finish:finish];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        if (self.isCanceled) {
-            return;
-        }
-        
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            if (failure) {
-                failure(task, error);
-            }
-            
-            if (finish) {
-                finish(task);
-            }
-        }];
+        [self failedWithTask:task error:error failure:failure finish:finish];
     }];
 }
 
@@ -87,33 +117,9 @@ NS_ASSUME_NONNULL_BEGIN
                                  finish:(nullable void (^)(NSURLSessionDataTask * _Nullable task))finish
 {
     return [self POST:URLString parameters:data progress:progress success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        if (self.isCanceled) {
-            return;
-        }
-        
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            if (success) {
-                success(task, responseObject);
-            }
-            
-            if (finish) {
-                finish(task);
-            }
-        }];
+        [self succeedWithTask:task responseObject:responseObject success:success finish:finish];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        if (self.isCanceled) {
-            return;
-        }
-        
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            if (failure) {
-                failure(task, error);
-            }
-            
-            if (finish) {
-                finish(task);
-            }
-        }];
+        [self failedWithTask:task error:error failure:failure finish:finish];
     }];
 }
 
@@ -127,33 +133,9 @@ NS_ASSUME_NONNULL_BEGIN
                                 finish:(nullable void (^)(NSURLSessionDataTask * _Nullable task))finish
 {
     return [self GET:URLString parameters:data progress:progress success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        if (self.isCanceled) {
-            return;
-        }
-
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            if (success) {
-                success(task, responseObject);
-            }
-
-            if (finish) {
-                finish(task);
-            }
-        }];
+        [self succeedWithTask:task responseObject:responseObject success:success finish:finish];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        if (self.isCanceled) {
-            return;
-        }
-
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            if (failure) {
-                failure(task, error);
-            }
-
-            if (finish) {
-                finish(task);
-            }
-        }];
+        [self failedWithTask:task error:error failure:failure finish:finish];
     }];
 }
 
@@ -166,33 +148,9 @@ NS_ASSUME_NONNULL_BEGIN
                                    finish:(nullable void (^)(NSURLSessionDataTask * _Nullable task))finish
 {
     return [self DELETE:URLString parameters:data success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        if (self.isCanceled) {
-            return;
-        }
-        
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            if (success) {
-                success(task, responseObject);
-            }
-            
-            if (finish) {
-                finish(task);
-            }
-        }];
+        [self succeedWithTask:task responseObject:responseObject success:success finish:finish];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        if (self.isCanceled) {
-            return;
-        }
-        
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            if (failure) {
-                failure(task, error);
-            }
-            
-            if (finish) {
-                finish(task);
-            }
-        }];
+        [self failedWithTask:task error:error failure:failure finish:finish];
     }];
 }
 
