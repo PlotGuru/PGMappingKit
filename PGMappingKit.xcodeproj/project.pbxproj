@@ -31,7 +31,7 @@
 		D0C8CB4A1C0128F800A35C46 /* NSObject+PGNilObject.m in Sources */ = {isa = PBXBuildFile; fileRef = D0C8CB481C0128F800A35C46 /* NSObject+PGNilObject.m */; };
 		D0C8CB4D1C01293400A35C46 /* NSManagedObjectContext+PGObject.h in Headers */ = {isa = PBXBuildFile; fileRef = D0C8CB4B1C01293400A35C46 /* NSManagedObjectContext+PGObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D0C8CB4E1C01293400A35C46 /* NSManagedObjectContext+PGObject.m in Sources */ = {isa = PBXBuildFile; fileRef = D0C8CB4C1C01293400A35C46 /* NSManagedObjectContext+PGObject.m */; };
-		D0F483D21C46E9C900C7FFFF /* PGNetworkHandler+PGData.h in Headers */ = {isa = PBXBuildFile; fileRef = D0F483D01C46E9C900C7FFFF /* PGNetworkHandler+PGData.h */; };
+		D0F483D21C46E9C900C7FFFF /* PGNetworkHandler+PGData.h in Headers */ = {isa = PBXBuildFile; fileRef = D0F483D01C46E9C900C7FFFF /* PGNetworkHandler+PGData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D0F483D31C46E9C900C7FFFF /* PGNetworkHandler+PGData.m in Sources */ = {isa = PBXBuildFile; fileRef = D0F483D11C46E9C900C7FFFF /* PGNetworkHandler+PGData.m */; };
 /* End PBXBuildFile section */
 
@@ -211,9 +211,9 @@
 				D02372B61C1CE439007D541A /* PGNetworkHandler+PGCoreData.h in Headers */,
 				D06C357F1BF01E6C003D9D72 /* NSManagedObjectContext+PGMapping.h in Headers */,
 				D06C35811BF01E6C003D9D72 /* PGMappingDescription.h in Headers */,
-				D0F483D21C46E9C900C7FFFF /* PGNetworkHandler+PGData.h in Headers */,
 				D06C355D1BF01C06003D9D72 /* PGMappingKit.h in Headers */,
 				D0C8CB4D1C01293400A35C46 /* NSManagedObjectContext+PGObject.h in Headers */,
+				D0F483D21C46E9C900C7FFFF /* PGNetworkHandler+PGData.h in Headers */,
 				D06C35831BF01E6C003D9D72 /* NSObject+PGKeyValueCoding.h in Headers */,
 				D0C8CB491C0128F800A35C46 /* NSObject+PGNilObject.h in Headers */,
 				D06C35891BF01E8B003D9D72 /* NSMutableDictionary+PGSafeCheck.h in Headers */,
