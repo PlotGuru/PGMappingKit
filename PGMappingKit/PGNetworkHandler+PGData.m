@@ -36,8 +36,8 @@ NS_ASSUME_NONNULL_BEGIN
     
     NSDictionary *properties = [NSObject propertiesOfObject:object];
     for (NSString *propertyName in properties.allKeys) {
-        NSString *key = [mapping keyForMapping:propertyName];
-        [data setObjectIfExists:[object valueForKey:propertyName] forKey:key];
+        NSString *remoteKey = [mapping remoteKeyForLocalKey:propertyName];
+        [data setObjectIfExists:[object valueForKey:propertyName] forKey:remoteKey];
     }
     
     return data;

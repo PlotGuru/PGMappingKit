@@ -50,8 +50,28 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (strong, nonatomic, readonly) NSString *remoteIDKey;
 
+/**
+ *  Creates and returns a `PGMappingDescription` object.
+ *
+ *  @param names A dictionary with only one value. Key is the outmost key of the represented JSON response and value is the name of the represented entity.
+ *  @param IDs A dictionary with only one value. Key is the unique ID key of the represented JSON response and value is the unique ID key of the represented entity.
+ *  @param mapping The relationship between the represented entity and JSON response. Keys are keys of the represented JSON reponse and values are attributes' names of the represented entity. Don't need to include `localIDKey` and `remoteIDKey` again.
+ *
+ *  @return Created `PGMappingDescription` object.
+ */
 + (instancetype)name:(NSDictionary *)names ID:(NSDictionary *)IDs mapping:(NSDictionary *)mapping;
 
+/**
+ *  Creates and returns a `PGMappingDescription` object.
+ *
+ *  @param localName The name of the represented entity.
+ *  @param remoteName The outmost key of the represented JSON response.
+ *  @param localIDKey The unique ID key of the represented entity.
+ *  @param remoteIDKey The unique ID key of the represented JSON response.
+ *  @param mapping The relationship between the represented entity and JSON response. Keys are keys of the represented JSON reponse and values are attributes' names of the represented entity. Don't need to include `localIDKey` and `remoteIDKey` again.
+ *
+ *  @return Created `PGMappingDescription` object.
+ */
 - (instancetype)initWithLocalName:(NSString *)localName
                        remoteName:(NSString *)remoteName
                        localIDKey:(NSString *)localIDKey
@@ -61,20 +81,20 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  *  Returns an attribute's name or another `PGMappingDescription` object.
  *
- *  @param key An key in the JSON response.
+ *  @param remoteKey A key in the represented JSON response.
  *
- *  @return An attribute's name or another `PGMappingDescription` object. Will return the input is nothing is found.
+ *  @return An attribute's name in the represented entity or another `PGMappingDescription` object. Will return the input is nothing is found.
  */
-- (id)mappingForKey:(NSString *)key;
+- (id)localKeyForRemoteKey:(NSString *)remoteKey;
 
 /**
  *  Returns a key.
  *
- *  @param mapping An attribute's name or another `PGMappingDescription` object.
+ *  @param localKey An attribute's name in the represented entity or another `PGMappingDescription` object.
  *
- *  @return A key in the JSON response or another `PGMappingDescription` object. Will return the input if nothing is found.
+ *  @return A key in the represented JSON response or another `PGMappingDescription` object. Will return the input if nothing is found.
  */
-- (NSString *)keyForMapping:(id)mapping;
+- (NSString *)remoteKeyForLocalKey:(id)localKey;
 
 @end
 

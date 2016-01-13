@@ -27,15 +27,15 @@
 
 @implementation NSManagedObjectContext (PGMappingDescription)
 
-- (id)save:(NSString *)type with:(nullable NSDictionary *)data description:(PGMappingDescription *)mapping error:(NSError **)error
+- (id)save:(nullable NSDictionary *)data description:(PGMappingDescription *)mapping error:(NSError **)error
 {
-    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:type];
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:mapping.localName];
     fetchRequest.predicate = [NSPredicate predicateWithFormat:@"%K == %@", mapping.localIDKey, data[mapping.remoteIDKey]];
 
     NSManagedObject *object = [self executeFetchRequest:fetchRequest error:error].firstObject;
 
     if (!object) {
-        object = [NSEntityDescription insertNewObjectForEntityForName:type inManagedObjectContext:self];
+        object = [NSEntityDescription insertNewObjectForEntityForName:mapping.localName inManagedObjectContext:self];
     }
 
     return [self save:data to:object description:mapping error:error];
@@ -44,19 +44,19 @@
 - (id)save:(nullable NSDictionary *)data to:(id)object description:(PGMappingDescription *)mapping error:(NSError **)error
 {
     for (NSString *key in data.allKeys) {
-        id mappedKey = [mapping mappingForKey:key];
+        id remoteKey = [mapping localKeyForRemoteKey:key];
         id value = data[key];
 
-        if ([mappedKey isKindOfClass:[PGMappingDescription class]]) {
-            PGMappingDescription *mappedMapping = mappedKey;
+        if ([remoteKey isKindOfClass:[PGMappingDescription class]]) {
+            PGMappingDescription *mappedMapping = remoteKey;
 
             if ([value isKindOfClass:[NSDictionary class]]) {
-                [object safelySetValue:[self save:mappedMapping.localName with:value description:mappedMapping error:error] forKey:mappedMapping.remoteName];
+                [object safelySetValue:[self save:value description:mappedMapping error:error] forKey:mappedMapping.remoteName];
             } else if ([value isKindOfClass:[NSArray class]]) {
                 NSArray *dataArray = value;
                 for (id data in dataArray) {
                     if ([data isKindOfClass:[NSDictionary class]]) {
-                        [object safelyAddValue:[self save:mappedMapping.localName with:data description:mappedMapping error:error] forKey:mappedMapping.remoteName];
+                        [object safelyAddValue:[self save:data description:mappedMapping error:error] forKey:mappedMapping.remoteName];
                     }
                 }
             } else {
@@ -66,8 +66,8 @@
                 NSManagedObject *relatedObject = [self executeFetchRequest:fetchRequest error:error].firstObject;
                 [object safelySetValue:relatedObject forKey:mappedMapping.remoteName];
             }
-        } else if ([mappedKey isKindOfClass:[NSString class]]) {
-            [object safelySetValue:value forKey:mappedKey];
+        } else if ([remoteKey isKindOfClass:[NSString class]]) {
+            [object safelySetValue:value forKey:remoteKey];
         }
     }
     

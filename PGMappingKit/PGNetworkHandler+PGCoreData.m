@@ -73,7 +73,7 @@ NS_ASSUME_NONNULL_BEGIN
                     [context deleteObject:object];
                 }
             }
-            [results addObject:[context save:mapping.localName with:responseArrayItem description:mapping error:&error]];
+            [results addObject:[context save:responseArrayItem description:mapping error:&error]];
         }
     }
     

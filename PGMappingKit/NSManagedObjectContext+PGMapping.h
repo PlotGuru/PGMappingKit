@@ -29,7 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSManagedObjectContext (PGMappingDescription)
 
-- (id)save:(NSString *)type with:(nullable NSDictionary *)data description:(PGMappingDescription *)mapping error:(NSError **)error;
+- (id)save:(nullable NSDictionary *)data description:(PGMappingDescription *)mapping error:(NSError **)error;
 - (id)save:(nullable NSDictionary *)data to:(id)object description:(PGMappingDescription *)mapping error:(NSError **)error;
 
 @end

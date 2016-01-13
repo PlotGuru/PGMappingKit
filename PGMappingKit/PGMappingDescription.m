@@ -46,7 +46,7 @@ NS_ASSUME_NONNULL_BEGIN
     return [[self alloc] initWithLocalName:names.allValues.firstObject ?: @""
                                 remoteName:names.allKeys.firstObject ?: @""
                                 localIDKey:IDs.allValues.firstObject ?: @""
-                               remoteIDKey:names.allKeys.firstObject ?: @""
+                               remoteIDKey:IDs.allKeys.firstObject ?: @""
                                    mapping:mapping];
 }
 
@@ -74,14 +74,14 @@ NS_ASSUME_NONNULL_BEGIN
     return self;
 }
 
-- (id)mappingForKey:(NSString *)key
+- (id)localKeyForRemoteKey:(NSString *)remoteKey;
 {
-    return self.mapping[key] ?: key;
+    return self.mapping[remoteKey] ?: remoteKey;
 }
 
-- (NSString *)keyForMapping:(id)mapping
+- (NSString *)remoteKeyForLocalKey:(id)localKey
 {
-    return [self.mapping allKeysForObject:mapping].firstObject ?: mapping;
+    return [self.mapping allKeysForObject:localKey].firstObject ?: localKey;
 }
 
 @end
