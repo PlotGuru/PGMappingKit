@@ -13,5 +13,5 @@ Pod::Spec.new do |s|
 
   s.source_files = 'PGMappingKit/*.{h,m}'
   s.frameworks = 'Foundation'
-  s.dependency 'AFNetworking', '~> 2.3'
+  s.dependency 'AFNetworking', '~> 3.0'
 end
