@@ -23,67 +23,59 @@
 
 @import Foundation;
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
- *  `PGMappingDescription` can be used to describe the relationship between a Core Data entity and its related data. It also support nested mapping and can work with `NSManagedObjectContext+PGSaveWithMapping.h` category to save any data into a Core Data database without the need to manually write any custom saving methods.
+ *  `PGMappingDescription` is used to describe the relationship between a Core Data entity and its related JSON response. It supports one-way nested mapping description.
  */
 @interface PGMappingDescription : NSObject
 
 /**
- *  The name for the Core Data entity.
+ *  The name of the represented entity.
  */
-@property (strong, nonatomic, readonly) NSString *entityName;
+@property (strong, nonatomic, readonly) NSString *localName;
 
 /**
- *  The mapped key for the Core Data entity used in nested mapping.
+ *  The outmost key of the represented JSON response. Will be ignored if this `PGMappingDescription` is not nested.
  */
-@property (strong, nonatomic, readonly) NSString *mappedKey;
+@property (strong, nonatomic, readonly) NSString *remoteName;
 
 /**
- *  The unique identifier attribute's name for the Core Data entity.
+ *  The unique ID key of the represented entity.
  */
-@property (strong, nonatomic, readonly) NSString *uniqueIdentifierKey;
+@property (strong, nonatomic, readonly) NSString *localIDKey;
 
 /**
- *  The mapped unique identifier key for the Core Data entity.
+ *  The unique ID key of the represented JSON response.
  */
-@property (strong, nonatomic, readonly) NSString *mappedUniqueIdentifierKey;
+@property (strong, nonatomic, readonly) NSString *remoteIDKey;
+
++ (instancetype)name:(NSDictionary *)names ID:(NSDictionary *)IDs mapping:(NSDictionary *)mapping;
+
+- (instancetype)initWithLocalName:(NSString *)localName
+                       remoteName:(NSString *)remoteName
+                       localIDKey:(NSString *)localIDKey
+                      remoteIDKey:(NSString *)remoteIDKey
+                          mapping:(NSDictionary *)mapping NS_DESIGNATED_INITIALIZER;
 
 /**
- *  Creates and returns a `PGMappingDescription` object.
+ *  Returns an attribute's name or another `PGMappingDescription` object.
  *
- *  @param entityArray It is used to specify entity information. It should contain two dictionaries. The first dictionary is used to define `entityName` and `mappedKey` properties where `mappedKey` is the key and `entityName` is the object. The second dictionary is used to define `uniqueIdentifierKey` and and `mappedUniqueIdentifierKey` properties where `mappedUniqueIdentifierKey` is the key and `uniqueIdentifierKey` is the object. They don't need to be included again in `mappingDictionary`. Example: `@[@{@"user_infos": @"userInfo"}, @{@"id": @"uniqueID"}]`
- *  @param mappingDictionary It is used to create the mapping relationships between attributes and their related data where data's keys are keys and attributes' names are objects. Example: `@{@"first_name": @"firstName", @"image_url": @"imageURL"}` When nil is passed in, `mappingForKey:` will always return the key,
+ *  @param key An key in the JSON response.
  *
- *  @return Created `PGMappingDescription` object.
- */
-+ (instancetype)mappingFromDescription:(NSArray *)entityArray description:(NSDictionary *)mappingDictionary;
-
-/**
- *  Creates and returns a `PGMappingDescription` object.
- *
- *  @param entityArray It is used to specify entity information. It should contain two dictionaries. The first dictionary is used to define `entityName` and `mappedKey` properties where `mappedKey` is the key and `entityName` is the object. The second dictionary is used to define `uniqueIdentifierKey` and and `mappedUniqueIdentifierKey` properties where `mappedUniqueIdentifierKey` is the key and `uniqueIdentifierKey` is the object. They don't need to be included again in `mappingDictionary`. Example: `@[@{@"user_infos": @"userInfo"}, @{@"id": @"uniqueID"}]`
- *  @param mappingDictionary It is used to create the mapping relationships between attributes and their related data where data's keys are keys and attributes' names are objects. Example: `@{@"first_name": @"firstName", @"image_url": @"imageURL"}` When nil is passed in, `mappingForKey:` will always return the key,
- *
- *  @return Created `PGMappingDescription` object.
- */
-- (instancetype)initWithDescription:(NSArray *)entityArray description:(NSDictionary *)mappingDictionary NS_DESIGNATED_INITIALIZER;
-
-/**
- *  Returns a attribute's name or another `PGMappingDescription` object if is nested.
- *
- *  @param key The key used to represent the attribute.
- *
- *  @return The attribute's name or another `PGMappingDescription` object (if nested) represented by the key. Will return `nil` if no value is represented by the key.
+ *  @return An attribute's name or another `PGMappingDescription` object. Will return the input is nothing is found.
  */
 - (id)mappingForKey:(NSString *)key;
 
 /**
  *  Returns a key.
  *
- *  @param mapping The attribute's name or another `PGMappingDescription` object if is nested.
+ *  @param mapping An attribute's name or another `PGMappingDescription` object.
  *
- *  @return The key represents the attribute or another `PGMappingDescription` object (if nested). Will return `nil` if no key represents the value.
+ *  @return A key in the JSON response or another `PGMappingDescription` object. Will return the input if nothing is found.
  */
 - (NSString *)keyForMapping:(id)mapping;
 
 @end
+
+NS_ASSUME_NONNULL_END

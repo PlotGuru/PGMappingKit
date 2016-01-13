@@ -30,7 +30,7 @@
 - (id)save:(NSString *)type with:(nullable NSDictionary *)data description:(PGMappingDescription *)mapping error:(NSError **)error
 {
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:type];
-    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"%K == %@", mapping.uniqueIdentifierKey, data[mapping.mappedUniqueIdentifierKey]];
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"%K == %@", mapping.localIDKey, data[mapping.remoteIDKey]];
 
     NSManagedObject *object = [self executeFetchRequest:fetchRequest error:error].firstObject;
 
@@ -51,20 +51,20 @@
             PGMappingDescription *mappedMapping = mappedKey;
 
             if ([value isKindOfClass:[NSDictionary class]]) {
-                [object safelySetValue:[self save:mappedMapping.entityName with:value description:mappedMapping error:error] forKey:mappedMapping.mappedKey];
+                [object safelySetValue:[self save:mappedMapping.localName with:value description:mappedMapping error:error] forKey:mappedMapping.remoteName];
             } else if ([value isKindOfClass:[NSArray class]]) {
                 NSArray *dataArray = value;
                 for (id data in dataArray) {
                     if ([data isKindOfClass:[NSDictionary class]]) {
-                        [object safelyAddValue:[self save:mappedMapping.entityName with:data description:mappedMapping error:error] forKey:mappedMapping.mappedKey];
+                        [object safelyAddValue:[self save:mappedMapping.localName with:data description:mappedMapping error:error] forKey:mappedMapping.remoteName];
                     }
                 }
             } else {
-                NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:mappedMapping.entityName];
-                fetchRequest.predicate = [NSPredicate predicateWithFormat:@"%K == %@", mappedMapping.uniqueIdentifierKey, value];
+                NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:mappedMapping.localName];
+                fetchRequest.predicate = [NSPredicate predicateWithFormat:@"%K == %@", mappedMapping.localIDKey, value];
 
                 NSManagedObject *relatedObject = [self executeFetchRequest:fetchRequest error:error].firstObject;
-                [object safelySetValue:relatedObject forKey:mappedMapping.mappedKey];
+                [object safelySetValue:relatedObject forKey:mappedMapping.remoteName];
             }
         } else if ([mappedKey isKindOfClass:[NSString class]]) {
             [object safelySetValue:value forKey:mappedKey];

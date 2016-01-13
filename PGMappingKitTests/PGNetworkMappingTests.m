@@ -76,9 +76,9 @@
     PGMappingDescription *mappingA = [PGMappingDescription mappingFromDescription:self.userInfoDescriptionArray description:self.userInfoMappingDictionary];
     PGMappingDescription *mappingB = [[PGMappingDescription alloc] initWithDescription:self.userInfoDescriptionArray description:self.userInfoMappingDictionary];
 
-    XCTAssertEqualObjects(mappingA.entityName, mappingB.entityName);
-    XCTAssertEqualObjects(mappingA.mappedKey, mappingB.mappedKey);
-    XCTAssertEqualObjects(mappingA.uniqueIdentifierKey, mappingB.uniqueIdentifierKey);
+    XCTAssertEqualObjects(mappingA.localName, mappingB.localName);
+    XCTAssertEqualObjects(mappingA.remoteName, mappingB.remoteName);
+    XCTAssertEqualObjects(mappingA.localIDKey, mappingB.localIDKey);
     XCTAssertEqualObjects(mappingA.mappedUniqueIdentifierKey, mappingB.mappedUniqueIdentifierKey);
     XCTAssertEqualObjects([mappingA mappingForKey:self.imageURLKey], [mappingB mappingForKey:self.imageURLKey]);
     XCTAssertEqualObjects([mappingA mappingForKey:self.usernameKey], [mappingB mappingForKey:self.usernameKey]);
@@ -91,9 +91,9 @@
 {
     PGMappingDescription *mapping = [PGMappingDescription mappingFromDescription:self.userInfoDescriptionArray description:self.userInfoMappingDictionary];
 
-    XCTAssertEqualObjects(mapping.entityName, self.userInfoEntityName);
-    XCTAssertEqualObjects(mapping.mappedKey, self.userInfoMappedKey);
-    XCTAssertEqualObjects(mapping.uniqueIdentifierKey, self.userInfoUniqueIdentifierKey);
+    XCTAssertEqualObjects(mapping.localName, self.userInfoEntityName);
+    XCTAssertEqualObjects(mapping.remoteName, self.userInfoMappedKey);
+    XCTAssertEqualObjects(mapping.localIDKey, self.userInfoUniqueIdentifierKey);
     XCTAssertEqualObjects(mapping.mappedUniqueIdentifierKey, self.userInfoMappedUniqueIdentifierKey);
 
     XCTAssertEqualObjects([mapping mappingForKey:self.imageURLKey], self.imageURLAttributeName, @"Attribute name and the key are different.");
@@ -109,7 +109,7 @@
     PGMappingDescription *userInfoMapping = [PGMappingDescription mappingFromDescription:self.userInfoDescriptionArray description:self.userInfoMappingDictionary];
     PGMappingDescription *userListMapping = [PGMappingDescription mappingFromDescription:@[@{@"user_lists": @"PGUserList"}, @{@"list_id": @"listID"}] description:@{@"list_name": @"listName", @"users": userInfoMapping}];
 
-    XCTAssertEqualObjects(userListMapping.entityName, @"PGUserList");
+    XCTAssertEqualObjects(userListMapping.localName, @"PGUserList");
 
     XCTAssertEqualObjects([userListMapping mappingForKey:@"users"], userInfoMapping);
     XCTAssertEqualObjects([userListMapping mappingForKey:@"list_id"], @"listID");

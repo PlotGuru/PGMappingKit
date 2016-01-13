@@ -23,13 +23,17 @@
 
 #import "PGMappingDescription.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface PGMappingDescription ()
 
-@property (strong, nonatomic) NSString *entityName;
-@property (strong, nonatomic) NSString *mappedKey;
+@property (strong, nonatomic) NSString *localName;
 
-@property (strong, nonatomic) NSString *uniqueIdentifierKey;
-@property (strong, nonatomic) NSString *mappedUniqueIdentifierKey;
+@property (strong, nonatomic) NSString *remoteName;
+
+@property (strong, nonatomic) NSString *localIDKey;
+
+@property (strong, nonatomic) NSString *remoteIDKey;
 
 @property (strong, nonatomic) NSMutableDictionary *mapping;
 
@@ -37,64 +41,49 @@
 
 @implementation PGMappingDescription
 
-+ (instancetype)mappingFromDescription:(NSArray *)entityArray description:(NSDictionary *)mappingDictionary
++ (instancetype)name:(NSDictionary *)names ID:(NSDictionary *)IDs mapping:(NSDictionary *)mapping
 {
-    return [[self alloc] initWithDescription:entityArray description:mappingDictionary];
+    return [[self alloc] initWithLocalName:names.allValues.firstObject ?: @""
+                                remoteName:names.allKeys.firstObject ?: @""
+                                localIDKey:IDs.allValues.firstObject ?: @""
+                               remoteIDKey:names.allKeys.firstObject ?: @""
+                                   mapping:mapping];
 }
 
 - (instancetype)init
 {
-    return [self initWithDescription:nil description:nil];
+    return [self initWithLocalName:@"" remoteName:@"" localIDKey:@"" remoteIDKey:@"" mapping:@{}];
 }
 
-- (instancetype)initWithDescription:(NSArray *)entityArray description:(NSDictionary *)mappingDictionary
+- (instancetype)initWithLocalName:(NSString *)localName
+                       remoteName:(NSString *)remoteName
+                       localIDKey:(NSString *)localIDKey
+                      remoteIDKey:(NSString *)remoteIDKey
+                          mapping:(NSDictionary *)mapping
 {
     self = [super init];
-
     if (self) {
-        if ([entityArray.firstObject isKindOfClass:[NSDictionary class]]) {
-            NSDictionary *firstObject = entityArray.firstObject;
-            self.mappedKey = firstObject.allKeys.firstObject;
-            self.entityName = firstObject.allValues.firstObject;
-        }
+        self.localName = localName;
+        self.remoteName = remoteName;
+        self.localIDKey = localIDKey;
+        self.remoteIDKey = remoteIDKey;
 
-        if ([entityArray.lastObject isKindOfClass:[NSDictionary class]]) {
-            NSDictionary *lastObject = entityArray.lastObject;
-            self.mappedUniqueIdentifierKey = lastObject.allKeys.firstObject;
-            self.uniqueIdentifierKey = lastObject.allValues.firstObject;
-        }
-
-        if (self.mappedUniqueIdentifierKey) {
-            self.mapping[self.mappedUniqueIdentifierKey] = self.uniqueIdentifierKey;
-        }
-
-        for (NSString *key in mappingDictionary.allKeys) {
-            self.mapping[key] = mappingDictionary[key];
-        }
+        self.mapping = mapping.mutableCopy;
+        self.mapping[remoteIDKey] = localIDKey;
     }
-
     return self;
 }
 
 - (id)mappingForKey:(NSString *)key
 {
-    return self.mapping.count ? self.mapping[key] : key;
+    return self.mapping[key] ?: key;
 }
 
 - (NSString *)keyForMapping:(id)mapping
 {
-    return self.mapping.count ? [self.mapping allKeysForObject:mapping].firstObject : mapping;
-}
-
-#pragma mark - Setter & Getter Methods
-
-- (NSMutableDictionary *)mapping
-{
-    if (!_mapping) {
-        _mapping = [NSMutableDictionary dictionary];
-    }
-
-    return _mapping;
+    return [self.mapping allKeysForObject:mapping].firstObject ?: mapping;
 }
 
 @end
+
+NS_ASSUME_NONNULL_END

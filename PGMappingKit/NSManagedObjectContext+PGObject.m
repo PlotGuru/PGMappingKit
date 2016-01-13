@@ -44,17 +44,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (nullable id)objectWithMapping:(PGMappingDescription *)mapping data:(nullable NSDictionary *)data error:(NSError **)error
 {
-    return [self objectWithType:mapping.entityName identifier:data ? data[mapping.mappedUniqueIdentifierKey] : nil forKey:mapping.uniqueIdentifierKey error:error];
+    return [self objectWithType:mapping.localName identifier:data ? data[mapping.remoteIDKey] : nil forKey:mapping.localIDKey error:error];
 }
 
 - (nullable id)objectWithMapping:(PGMappingDescription *)mapping identifier:(nullable id)identifier error:(NSError **)error
 {
-    return [self objectWithType:mapping.entityName identifier:identifier forKey:mapping.uniqueIdentifierKey error:error];
+    return [self objectWithType:mapping.localName identifier:identifier forKey:mapping.remoteIDKey error:error];
 }
 
 - (nullable NSArray *)objectsWithMapping:(PGMappingDescription *)mapping error:(NSError **)error
 {
-    return [self objectsWithType:mapping.entityName error:error];
+    return [self objectsWithType:mapping.localName error:error];
 }
 
 @end
