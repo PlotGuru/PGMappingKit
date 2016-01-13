@@ -35,8 +35,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PGNetworkHandler (PGCoreData)
 
-- (NSMutableDictionary *)dataFromObject:(nullable id)object mapping:(PGMappingDescription *)mapping;
-
 - (nullable NSURLSessionDataTask *)PUT:(NSString *)URLString
                                   from:(nullable NSDictionary *)data
                                     to:(NSManagedObjectContext *)context

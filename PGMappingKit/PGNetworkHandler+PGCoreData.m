@@ -25,8 +25,6 @@
 #import "PGMappingDescription.h"
 #import "NSManagedObjectContext+PGObject.h"
 #import "NSManagedObjectContext+PGMapping.h"
-#import "NSMutableDictionary+PGSafeCheck.h"
-#import "NSObject+PGPropertyList.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -96,19 +94,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation PGNetworkHandler (PGCoreData)
 
-- (NSMutableDictionary *)dataFromObject:(nullable id)object mapping:(PGMappingDescription *)mapping;
-{
-    NSMutableDictionary *data = [NSMutableDictionary dictionary];
-    
-    NSDictionary *properties = [NSObject propertiesOfObject:object];
-    for (NSString *propertyName in properties.allKeys) {
-        NSString *key = [mapping keyForMapping:propertyName];
-        [data setObjectIfExists:[object valueForKey:propertyName] forKey:key];
-    }
-    
-    return data;
-}
-
 - (nullable NSURLSessionDataTask *)PUT:(NSString *)URLString
                                   from:(nullable NSDictionary *)data
                                     to:(NSManagedObjectContext *)context
@@ -124,14 +109,14 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (nullable NSURLSessionDataTask *)POST:(NSString *)URLString
-                                  from:(nullable NSDictionary *)data
-                                    to:(NSManagedObjectContext *)context
-                               mapping:(PGMappingDescription *)mapping
-                                option:(PGSaveOption)option
-                              progress:(nullable void (^)(NSProgress *progress))progress
-                               success:(nullable void (^)(NSURLSessionDataTask *task, NSArray *results))success
-                               failure:(nullable void (^)(NSURLSessionDataTask * _Nullable task, NSError *error))failure
-                                finish:(nullable void (^)(NSURLSessionDataTask * _Nullable task))finish
+                                   from:(nullable NSDictionary *)data
+                                     to:(NSManagedObjectContext *)context
+                                mapping:(PGMappingDescription *)mapping
+                                 option:(PGSaveOption)option
+                               progress:(nullable void (^)(NSProgress *progress))progress
+                                success:(nullable void (^)(NSURLSessionDataTask *task, NSArray *results))success
+                                failure:(nullable void (^)(NSURLSessionDataTask * _Nullable task, NSError *error))failure
+                                 finish:(nullable void (^)(NSURLSessionDataTask * _Nullable task))finish
 {
     return [self POST:URLString from:data progress:progress success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [self succeedWithTask:task responseObject:responseObject context:context mapping:mapping option:option success:success failure:failure];
