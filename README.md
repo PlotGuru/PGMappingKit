@@ -30,6 +30,63 @@ Source is available through [CocoaPods](http://cocoapods.org). To install it, si
 pod 'PGMappingKit', '~> 1.0'
 ```
 
+## Example
+
+Assuming you have the Core Data model shown in the image below.
+
+![](https://cloud.githubusercontent.com/assets/3337361/12500157/6a3871ca-c065-11e5-9469-4fa5c62b6925.png)
+
+Assuming you have the following JSON that can be retrieved from `www.example.com/user`.
+
+```json
+[
+  {
+    "id": 6,
+    "name": "Justin Jia",
+    "posts": [
+      {
+        "id": 0,
+        "text": "Hello, PGMappingKit!"
+      }
+    ]
+  }
+]
+```
+
+You can retreive, parse the JSON response and get it into Core Data by using the following code:
+
+```objc
+// Initialize Network Handler
+
+PGNetworkHandler *networkHandler = [PGNetworkHandler alloc] initWithBaseURL:[NSURL URLWithString:@"www.example.com"]];
+
+// Describe Relationship
+
+PGMappingDescription *postMapping = [PGMappingDescription name:@{@"posts": PGEntity(Post)}
+                                                            ID:@{@"id": PGAttribute(Post, uniqueID)}
+                                                       mapping:@{@"text": PGAttribute(Post, text)}];
+PGMappingDescription *userMapping = [PGMappingDescription name:@{@"": PGEntity(User)}
+                                                            ID:@{@"id": PGAttribute(User, uniqueID)}
+                                                       mapping:@{@"name": PGAttribute(User, username),
+                                                                 @"posts": postMapping}];
+
+// Perform GET Request
+
+[self.networkHandler GET:@"user"
+                     from:nil
+                     to:context
+                     mapping:userMapping
+                     option:PGSaveOptionUpdate
+                     progress:nil
+                     success:^(NSURLSessionDataTask * _Nonnull task, NSArray * _Nonnull results) {
+        // Finish Login
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        // Show Error
+    } finish:^(NSURLSessionDataTask * _Nullable task) {
+        // Refresh UI
+}];
+```
+
 ## Credits
 
 PGMappingKit is owned by [Plot Guru](http://www.plotguru.com).
