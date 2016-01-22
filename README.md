@@ -53,7 +53,7 @@ Assuming you have the following JSON that can be retrieved from `www.example.com
 ]
 ```
 
-You can retreive, parse the JSON response and get it into Core Data by using the following code:
+You can retrieve, parse the JSON response and get it into Core Data by using the following code:
 
 ```objc
 // Initialize Network Handler
