@@ -5,7 +5,7 @@ Pod::Spec.new do |s|
   s.summary          = 'Lightweight JSON Synchronization to Core Data'
   s.homepage         = 'https://github.com/PlotGuru/PGMappingKit'
   s.social_media_url = 'https://twitter.com/PlotGuru'
-  s.author           = { "Justin Jia" => "justin.jia@plotguru.com" }
+  s.author           = { "Justin Jia" => "justin.jia.developer@gmail.com" }
   s.source           = { :git => "https://github.com/PlotGuru/PGMappingKit.git", :tag => s.version.to_s }
 
   s.platform     = :ios, '8.0'
