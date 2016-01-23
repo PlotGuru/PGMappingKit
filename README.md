@@ -22,7 +22,7 @@ Source is available through [Carthage](https://github.com/Carthage/Carthage). To
 github "PlotGuru/PGMappingKit"  ~> 1.0
 ```
 
-### CocoaPods (Coming Soon)
+### CocoaPods
 
 Source is available through [CocoaPods](http://cocoapods.org). To install it, add the following line to your Podfile:
 
