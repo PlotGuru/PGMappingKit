@@ -1,4 +1,4 @@
-# PGMappingKit
+![](https://cloud.githubusercontent.com/assets/3337361/12528689/6b7c5292-c153-11e5-9d61-cef986b7c919.png)
 
 [![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Version](https://img.shields.io/cocoapods/v/PGMappingKit.svg?style=flat)](http://cocoapods.org/pods/PGMappingKit)
