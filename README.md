@@ -178,8 +178,6 @@ Use the underlying `NSManagedObjectContext+PGMapping.h` to save arbitrary `NSDic
 
 PGMappingKit is owned by [Plot Guru](http://www.plotguru.com).
 
-PGMappingKit is maintained by [Justin Jia](https://github.com/justinjiadev/) and [Hooman Mohammadi](https://github.com/hooman96).
-
 PGMappingKit was originally created by [Justin Jia](https://github.com/justinjiadev/) in the development of [Plot Guru for iOS](https://itunes.apple.com/app/id964629606).
 
 ## Licensing
